@@ -1,3 +1,28 @@
+# The Clark Kent MultiTool
+## A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.
+
+[![Build Status](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool.svg?branch=master)](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool)
+[![Coverage Status](https://coveralls.io/repos/github/Clark-Kent-Multitool/Clark-Kent-Multitool/badge.svg?branch=master)](https://coveralls.io/github/Clark-Kent-Multitool/Clark-Kent-Multitool?branch=master)
+[![Documentation Status](https://readthedocs.org/projects/clark-kent-multitool/badge/?version=latest)](https://clark-kent-multitool.readthedocs.io/en/latest/?badge=latest)
+[![PyPI version](https://badge.fury.io/py/Clark-Kent-Multitool.svg)](https://badge.fury.io/py/Clark-Kent-Multitool)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Version 1.0.0**
+
+**Created by Graham Waters**
+
+# Table of Contents
+
+- [The Clark Kent MultiTool](#the-clark-kent-multitool)
+  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
+- [Table of Contents](#table-of-contents)
+- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
+- [Table of Contents](#table-of-contents-1)
+- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
+- [Example Use Case](#example-use-case)
+- [Automatic Report Generator For Avid ReadMe Writers Version](#automatic-report-generator-for-avid-readme-writers-version)
+
+
 # Automatic Report Generator For Avid ReadMe Writers
 **Version 1.0.0**
 
@@ -6,49 +31,28 @@
 
 # Table of Contents
 
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
+- [The Clark Kent MultiTool](#the-clark-kent-multitool)
+  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
 - [Table of Contents](#table-of-contents)
+- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
+- [Table of Contents](#table-of-contents-1)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Credits](#credits)
-- [Version History](#version-history)
+- [Example Use Case](#example-use-case)
+- [Automatic Report Generator For Avid ReadMe Writers Version](#automatic-report-generator-for-avid-readme-writers-version)
 
 
 # Automatic Report Generator For Avid ReadMe Writers
 
-Converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations.
+Converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. If you've ever been under a time constraint and needed to generate a report quickly in Jupyter Notebook format but found that you wrote most of your analysis in a markdown file, then you just found the solution to our mutual dilemma.
+This project is currently being developed in my free time, and any pull requests will be reviewed as soon as I can. There are some areas where it could be beefed up and made more robust and dynamic. I welcome your input.
+The code has been written with Python 3.9.6 and developed in Visual Studio Code. As far as I am aware, it should run on macOS X 10.11 or later and on any computer. This is not my area of expertise, and if your distribution is incompatible, please add it to the issues section.
+Finally, It's worth noting that this software doesn't magically transform your work from a document to a presentation, which will still require the careful work that data scientists and analysts are known for. However, it does make sure you don't have to start from scratch when making an interactive and working notebook out of something that would otherwise take hours manually write everything out again. The idea came about when I was parsing my old repositories for what I wanted to include in my official portfolio. I realized how many readmes I would be reading if I did it the old-fashioned way. I decided to standardize what a data science notebook should look like, and once that was done, it was pretty simple to move forward. After a while, I decided to do away with the manual process and let this little tool automate the whole thing, well, at least most of the grunt work.
+I hope this brings you as much joy as it does me!
+Happy Coding!
 
-# Installation
-
-```bash
-pip install -r requirements.txt
-```
-
-# Usage
-
-```bash
-python3 main.py
-```
-
-# Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-
-# License
-
-This program is free software: you can redistribute it and/or modify it under the terms of the MIT License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-# Credits
-
-- [Graham Waters]()
-
-
-# Version History
+# Example Use Case
+Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
+I can use this this tool to generate my overview notebook for the project as follows:
+$ python auto-report-generator-for-avid-readme-writers.py --output .jnlp $ open ~/.notebooks/$(dirname "$\.jnlps")
+You'll get something like this:
+# Automatic Report Generator For Avid ReadMe Writers Version
