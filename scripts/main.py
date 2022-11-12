@@ -7,6 +7,12 @@ import datetime as dt
 
 # Path to the directory containing the README file
 path = "readme.md"  # same directory as this script
+# Path to the scripts directory
+scripts_path = "scripts"
+# Path to the Notebooks directory
+notebooks_path = "notebooks"
+
+# Global Variables
 project_name = "Reddit NLP Project"
 author = "Graham Waters"
 date = dt.datetime.now().strftime("%Y-%m-%d")
