@@ -25,7 +25,6 @@
   - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
 - [Table of Contents](#table-of-contents)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
-- [Table of Contents](#table-of-contents-1)
 - [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
 - [Example Use Case](#example-use-case)
 - [Installation](#installation)
@@ -38,21 +37,6 @@
 **Version 1.0.0**
 
 **Created by Graham Waters**
-
-
-# Table of Contents
-- [Clark Kent Reporter](#clark-kent-reporter)
-  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
-- [Table of Contents](#table-of-contents)
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
-- [Table of Contents](#table-of-contents-1)
-- [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
-- [Example Use Case](#example-use-case)
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
-
 
 # What does Clark Kent Reporter do?
 
