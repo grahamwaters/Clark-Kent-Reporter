@@ -3,6 +3,8 @@
     Lorebook Generator Engine for use with NovelAI
 </p>
 
+# Lorebook Generator Engine for use with NovelAI
+
 [![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md "Go to contributions doc") [![Made with Python](https://img.shields.io/badge/Python->=3.6-blue?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
 ![license](https://img.shields.io/github/license/grahamwaters/lorebook_generator_for_novelai)
 

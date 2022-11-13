@@ -7,7 +7,7 @@ import datetime as dt
 import configparser
 
 # user-defined variables
-project_name = "Reddit NLP Project"
+project_name = "my_project" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
 author = "Graham Waters"
 license_text = "MIT License"
 
@@ -71,6 +71,45 @@ readme_text = "" # initially the file is empty
 #   add a code cell below this markdown cell for the user to add any code they want to the section.
 
 
+
+def remove_markdown_comments():
+    global readme_text
+    # remove the markdown comments from the readme.md file
+    # <!-- marks the start of a comment and --> marks the end of a comment
+    comment_reg_pattern = r"<!--.*?-->"
+    readme_text = re.sub(comment_reg_pattern, "", readme_text)
+    print('readme_text has been uncommentted')
+
+
+
+def get_project_name(readme_text):
+    """
+    get_project_name takes a string of text and returns a string
+
+    Parameters
+
+    :param readme_text: a string of text
+    :type readme_text: str
+    :return: a string
+    :rtype: str
+    """
+    # get the name of the project from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
+    # the readme text is split with '\n' as the delimiter not actual newlines.
+
+    # split the readme.md file into lines
+    lines = readme_text.split("\n")  # split on newlines
+
+    # find the line that starts with "#"
+    project_name_line = [line for line in lines if line.startswith("#")][0]
+
+    # remove the "#" symbols
+    project_name = project_name_line.replace("#", "")
+
+    # remove the spaces
+    project_name = project_name.strip()
+
+    return project_name
+
 def parse_table_of_contents(readme_text):
     """
     parse_table_of_contents takes a string of text and returns a list of tuples
@@ -88,6 +127,13 @@ def parse_table_of_contents(readme_text):
     # section_name is a string
 
     # the readme text is split with '\n' as the delimiter not actual newlines.
+
+    # get the name of the project from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
+    global project_name
+    project_name = get_project_name(readme_text)
+
+    # remove the commments
+    remove_markdown_comments() # this function modifies the global variable readme_text
 
     # split the readme.md file into lines
     lines = readme_text.split("\n")  # split on newlines
@@ -177,32 +223,50 @@ def get_text(section_name, markdown_text):
         # how? find the line that starts with the section name, and is not in the table of contents (using regex) then find the next line that starts with a "#" symbol. The text between those two lines is the text for the section.
 
         # step 1: find the line that starts with the section name
-        pattern = r"\n# " + section_name + r"\n"
-        section_line = re.findall(pattern, markdown_text)[
-            0
-        ]  # the first line is the table of contents line so we skip it.
-
+        pattern = r"^" + section_name + r".*?$" # the ^ symbol means the start of the line, the $ symbol means the end of the line, the .*? means any number of any characters
+        section_name_line = re.findall(pattern, markdown_text, re.MULTILINE)[0] # this is a string
         # step 2: find the line number of that line
-        # search the markdown text for the section line
-        markdown_text = markdown_text[markdown_text.find(section_line) :]
-        # what is the next section name?
-        # Section names match the section_name pattern \n\n# Data Cleaning\n\n for example so we can use that to find the next section name.
-        regex_section_pattern = r"\n\n# [A-Za-z ]+\n\n"
-        next_section_name = re.findall(regex_section_pattern, markdown_text)[0]
-        # find the line number of the next section name
-        next_section_line_number = markdown_text.find(next_section_name)
-        markdown_text = markdown_text[
-            :next_section_line_number
-        ]  # remove the next section name from the markdown text. Now the markdown text only contains the text for the section.
-        # remove the section name from the markdown text
-        markdown_text = markdown_text.replace(section_line, "")
+        section_name_line_number = markdown_text.split("\n").index(section_name_line)
+
+        # step 3: find the next line that starts with a "#" symbol
+        lines = markdown_text.split("\n")
+
+        # find the line numbers of the lines that start with a "#" symbol
+        section_header_line_numbers = [i for i, line in enumerate(lines) if line.startswith("#")]
+
+        # find the line numbers of the lines that start with a "#" symbol that are after the line that starts with the section name
+        section_header_line_numbers = [i for i in section_header_line_numbers if i > section_name_line_number]
+
+        # find the line number of the next line that starts with a "#" symbol
+        next_section_header_line_number = section_header_line_numbers[0]
+
+        # step 4: get the text between those two lines
+        section_text = " ".join(lines[section_name_line_number + 1 : next_section_header_line_number])
+
+
+        # # the first line is the table of contents line so we skip it.
+
+        # # step 2: find the line number of that line
+        # # search the markdown text for the section line
+        # markdown_text = markdown_text[markdown_text.find(section_line) :]
+        # # what is the next section name?
+        # # Section names match the section_name pattern \n\n# Data Cleaning\n\n for example so we can use that to find the next section name.
+        # regex_section_pattern = r"\n\n# [A-Za-z ]+\n\n"
+        # next_section_name = re.findall(regex_section_pattern, markdown_text)[0]
+        # # find the line number of the next section name
+        # next_section_line_number = markdown_text.find(next_section_name)
+        # markdown_text = markdown_text[
+        #     :next_section_line_number
+        # ]  # remove the next section name from the markdown text. Now the markdown text only contains the text for the section.
+        # # remove the section name from the markdown text
+        # markdown_text = markdown_text.replace(section_line, "")
         # remove the newlines
         # markdown_text = markdown_text.replace("\n", " ")
 
         # preserve the newline characters and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file.
 
         # also preserve the bullet points and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the * and the - characters. Also, the bullet points are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation. They may also be numeric i.e. 1, 2, 3, etc. We want to preserve that too.
-
+        markdown_text = section_text #
         bullet_points = re.findall(r"\n[ ]{0,4}[-*][ ]{1,4}", markdown_text)
         for bullet_point in bullet_points:
             markdown_text = markdown_text.replace(
@@ -213,8 +277,9 @@ def get_text(section_name, markdown_text):
         markdown_text = "\n" + markdown_text
         # add  to the end of the text
         markdown_text = markdown_text + "\n"
-    except:
+    except Exception as e:
         markdown_text = "\nSection Text Not Found\n"
+        print(e)
     return markdown_text
 
 
@@ -310,10 +375,13 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
             print("\t\t\t" + section_name)
 
     # create a markdown cell with the project name
-    project_name = "# " + project_name # add a # symbol to the beginning of the project name
-    project_name = "# {ProjectName}\n**A project by {author}, prepared {date}**".format(
+    if '#' not in project_name:
+        project_name = "# {ProjectName}\n**A project by {author}, prepared {date}**".format(
         ProjectName=project_name, author=author, date=date
     )
+    else:
+        project_name = project_name + "{ProjectName}\n**A project by {author}, prepared {date}**".format(ProjectName = project_name, author = author, date = date) # add the project name to the markdown cell
+    # add the markdown cell to the notebook
     # add the project name markdown cell to the notebook
     project_name_cell = nbformat.v4.new_markdown_cell(project_name)
     # add the markdown cell to the report notebook
@@ -346,15 +414,20 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
             f'Adding section "{section_name}" to the notebook with section level {section_level}'
         )
         # create a markdown cell with the section name
+        # add the markdown cell to the report notebook
+        if '#' not in section_name:
+            section_name = "#" * section_level + " " + section_name
+        else:
+            pass # add the section name to the markdown cell
         section_name_cell = nbformat.v4.new_markdown_cell(section_name)
         print(
             f'Adding markdown cell with section name "{section_name}" to the notebook'
         )
-        # add the markdown cell to the report notebook
         report_notebook.cells.append(section_name_cell)
         # create a markdown cell with the text from the readme.md file for that section
 
         section_text = get_text(section_name, readme_text)
+
         section_text_cell = nbformat.v4.new_markdown_cell(section_text)
         print(
             f"Adding {len(section_text)} characters of text to the notebook in a markdown cell"
