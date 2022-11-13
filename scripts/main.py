@@ -12,7 +12,7 @@ author = "Graham Waters"
 license_text = "MIT License"
 
 # flags
-html_enabled = False # note: enable the html_enabled flag to enable the html header detection (once it is working)
+html_enabled = False  # note: enable the html_enabled flag to enable the html header detection (once it is working)
 
 # read the config file
 config = configparser.ConfigParser()
@@ -33,7 +33,7 @@ print(notebooks_path)
 date = dt.datetime.now().strftime("%Y-%m-%d")
 
 # set the readme text to blank
-readme_text = "" # initially the file is empty
+readme_text = ""  # initially the file is empty
 
 # read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)
 # What are the expected sections in a data science report notebook?
@@ -74,7 +74,6 @@ readme_text = "" # initially the file is empty
 #   add a code cell below this markdown cell for the user to add any code they want to the section.
 
 
-
 def parse_table_of_contents(readme_text):
     """
     parse_table_of_contents takes a string of text and returns a list of tuples
@@ -92,8 +91,9 @@ def parse_table_of_contents(readme_text):
     # section_name is a string
 
     # first some house cleaning
-    readme_text = readme_text.replace('center', "center") # this is a hack to get the html tags to be recognized as headers in the readme.md file.
-
+    readme_text = readme_text.replace(
+        "center", "center"
+    )  # this is a hack to get the html tags to be recognized as headers in the readme.md file.
 
     # the readme text is split with '\n' as the delimiter not actual newlines.
 
@@ -110,7 +110,7 @@ def parse_table_of_contents(readme_text):
     # variables for this section
     potential_headers = []
 
-    if html_enabled: # enable this once the code is functioning
+    if html_enabled:  # enable this once the code is functioning
         # <p align="center">
         #     Lorebook Generator Engine for use with NovelAI
         # </p>
@@ -119,17 +119,18 @@ def parse_table_of_contents(readme_text):
         # Note 1. Find any <p> tags that are aligned to the center and see if they are only one line long. These are titles or headers in the readme.md file.
         # Note 2. any other <> tags that are centered could be headers as well but of a different level.
 
-
-        pattern = r'<p align="center">(.*?)</p>' # this pattern matches the html tags that are centered and have text in between them. This is a header in the readme.md file.
+        pattern = r'<p align="center">(.*?)</p>'  # this pattern matches the html tags that are centered and have text in between them. This is a header in the readme.md file.
 
         # now add to the pattern for markdown headers
-        pattern_part_two = r'|^#+\s(.*)' # this pattern matches markdown headers. This is a header in the readme.md file.
+        pattern_part_two = r"|^#+\s(.*)"  # this pattern matches markdown headers. This is a header in the readme.md file.
 
         # add the two patterns together
         pattern = pattern + pattern_part_two
 
         # find all the headers in the readme.md file
-        headers = re.findall(pattern, readme_text, re.MULTILINE) # the re.MULTILINE flag is needed to match the headers that are on multiple lines. This is a header in the readme.md file.
+        headers = re.findall(
+            pattern, readme_text, re.MULTILINE
+        )  # the re.MULTILINE flag is needed to match the headers that are on multiple lines. This is a header in the readme.md file.
 
         # now we have a list of tuples ( '' , 'header text' ) I am sure what the first element is for or where it came from. Do you know GitHub Copilot?
         # Copilot: the first element is the header level. It is an integer. The second element is the header text. It is a string.
@@ -143,45 +144,51 @@ def parse_table_of_contents(readme_text):
         # pattern_part_three = r'|^<h(\d)>(.*)</h\d>' # this pattern matches html headers. This is a header in the readme.md file.
         # Graham: I see. I think I understand now. I will try to implement this.
 
-        pattern_part_two = r'|^#+\s(.*)'
-        pattern_part_three = r'|^<h(\d)>(.*)</h\d>'
+        pattern_part_two = r"|^#+\s(.*)"
+        pattern_part_three = r"|^<h(\d)>(.*)</h\d>"
 
         # add the two patterns together
         pattern = pattern + pattern_part_two + pattern_part_three
 
         # Graham: okay, I am trying your patterns now.
 
-        matches = re.findall(pattern, readme_text, flags=re.I) # find all the matches for the pattern in the readme_text variable case insensitive
+        matches = re.findall(
+            pattern, readme_text, flags=re.I
+        )  # find all the matches for the pattern in the readme_text variable case insensitive
 
         # replace any instances of 'center' with "center" in the readme_text variable
 
-        top_level_pattern = r'<(.*?) align="center">\n(.*?)\n<\/(.*?)>' # this pattern matches the html tags that are centered and have text in between them. This is a header in the readme.md file.
-        level_n_pattern = r'<(.*?) align="left">\n(.*?)\n<\/(.*?)>' # this pattern matches the html tags that are left aligned and have text in between them. This is a header in the readme.md file.
+        top_level_pattern = r'<(.*?) align="center">\n(.*?)\n<\/(.*?)>'  # this pattern matches the html tags that are centered and have text in between them. This is a header in the readme.md file.
+        level_n_pattern = r'<(.*?) align="left">\n(.*?)\n<\/(.*?)>'  # this pattern matches the html tags that are left aligned and have text in between them. This is a header in the readme.md file.
 
         # lower level headers are aligned to the left and have text in between them.
         top_matches = re.findall(top_level_pattern, readme_text)
         level_n_matches = re.findall(level_n_pattern, readme_text)
-
-
-
-
 
         # find any lines that have a <p> tag that is aligned to the center and has a </p> tag inline with it. This is a header. Use the pattern and matches from the lines above.
         # we know all the matches will be headers because they are centered and have text in between them. We can add these as level 1 headers to the table_of_contents_line variable.
 
         # save the match_tuple to a list of tuples
         matched_tuples = []
-        for match in top_matches: # for each match in the top_matches variable
-            match_tuple = (match[1], match, 1) # create a tuple with the match text, the match, and the header level
+        for match in top_matches:  # for each match in the top_matches variable
+            match_tuple = (
+                match[1],
+                match,
+                1,
+            )  # create a tuple with the match text, the match, and the header level
             matched_tuples.append(match_tuple)
-        for match in level_n_matches: # for each match in the level_n_matches variable
-            match_tuple = (match[1], match, 2) # create a tuple with the match text, the match, and the header level
-            matched_tuples.append(match_tuple) # add the match_tuple to the matched_tuples variable
+        for match in level_n_matches:  # for each match in the level_n_matches variable
+            match_tuple = (
+                match[1],
+                match,
+                2,
+            )  # create a tuple with the match text, the match, and the header level
+            matched_tuples.append(
+                match_tuple
+            )  # add the match_tuple to the matched_tuples variable
 
-
-        #^ Graham: So, where are we now?
-        #* Copilot: We have a list of tuples that contain the header text, the header, and the header level.
-
+        # ^ Graham: So, where are we now?
+        # * Copilot: We have a list of tuples that contain the header text, the header, and the header level.
 
         # put all matches from top_matches and level_n_matches into a list of tuples
         # the list of tuples will be in the format (header_text, header_level)
@@ -198,21 +205,23 @@ def parse_table_of_contents(readme_text):
         # header_text is a string
         # header_level is an integer
         # line_number is an integer
-        #note: we will need to use regex "lineNumber" to get the line number of the match.
+        # note: we will need to use regex "lineNumber" to get the line number of the match.
         for match in top_matches:
-            potential_headers.append((match[1], 1, match[2])) # i.e. (header_text, header_level, line_number)
+            potential_headers.append(
+                (match[1], 1, match[2])
+            )  # i.e. (header_text, header_level, line_number)
         for match in level_n_matches:
-            potential_headers.append((match[1], 2, match[2])) # i.e. (header_text, header_level, line_number)
-
+            potential_headers.append(
+                (match[1], 2, match[2])
+            )  # i.e. (header_text, header_level, line_number)
 
     # Note: this is a very specific case and may not work for all cases.
 
-
-    #& Remove any headers which are duplicated
+    # & Remove any headers which are duplicated
     potential_headers = list(set(potential_headers))
     # there may be discrepancies from the table of contents we need to update the table_of_contents_line variable to reflect the actual table of contents by examining the lines where the headers occur. Also, we now have html headers and markdown headers that need to be included (not repeated) in the table of contents in order.
 
-    #* First, get the table of contents for markdown headers
+    # * First, get the table of contents for markdown headers
 
     # find the line number of that line
     table_of_contents_line_number = lines.index(table_of_contents_line)
@@ -229,7 +238,9 @@ def parse_table_of_contents(readme_text):
     ]
 
     # parse the section names and section levels
-    table_of_contents = [] #^ This is where it all begins, the table of contents is a list of tuples in the format (section_name, section_level) where section_name is a string and section_level is an integer.
+    table_of_contents = (
+        []
+    )  # ^ This is where it all begins, the table of contents is a list of tuples in the format (section_name, section_level) where section_name is a string and section_level is an integer.
 
     for line in table_of_contents_lines:
         # count the number of "#" symbols
@@ -239,18 +250,29 @@ def parse_table_of_contents(readme_text):
         # remove the spaces
         section_name = section_name.strip()
         # make a tuple
-        section = (section_name, section_level) #^ the section tuple is what we want to add to the table_of_contents variable
+        section = (
+            section_name,
+            section_level,
+        )  # ^ the section tuple is what we want to add to the table_of_contents variable
         # append the tuple to the list of sections
-        table_of_contents.append(section) #^ add the section tuple to the table_of_contents variable
+        table_of_contents.append(
+            section
+        )  # ^ add the section tuple to the table_of_contents variable
 
     if html_enabled:
-        #* Second, combine the markdown headers with the html headers in order of appearance in the readme.md file
-        full_table_of_contents = [] # this will be the full table of contents
+        # * Second, combine the markdown headers with the html headers in order of appearance in the readme.md file
+        full_table_of_contents = []  # this will be the full table of contents
         # loop through the potential headers (html headers)
-        for potential_header in potential_headers: # potential_header is a tuple (line, line_number)
+        for (
+            potential_header
+        ) in potential_headers:  # potential_header is a tuple (line, line_number)
             # loop through the table of contents lines from the readme.md file (markdown headers)
-            for section in table_of_contents: # this is the table of contents from the readme.md file
-                #* if the section name is in the potential header line and the line number of the potential header is less than the line number of the section in the table of contents then add the potential header to the full table of contents.
+            for (
+                section
+            ) in (
+                table_of_contents
+            ):  # this is the table of contents from the readme.md file
+                # * if the section name is in the potential header line and the line number of the potential header is less than the line number of the section in the table of contents then add the potential header to the full table of contents.
                 if section[0] in potential_header[0]:
                     # add the section to the full table of contents
                     full_table_of_contents.append(section)
@@ -258,13 +280,12 @@ def parse_table_of_contents(readme_text):
                     table_of_contents.remove(section)
                     # break out of the loop
                     break
-        full_table_of_contents += table_of_contents # add the remaining table of contents to the full table of contents
+        full_table_of_contents += table_of_contents  # add the remaining table of contents to the full table of contents
     else:
-        full_table_of_contents = table_of_contents # if html is not enabled then the full table of contents is just the table of contents from the readme.md file
-    #* Third, add the remaining markdown headers to the full table of contents
+        full_table_of_contents = table_of_contents  # if html is not enabled then the full table of contents is just the table of contents from the readme.md file
+    # * Third, add the remaining markdown headers to the full table of contents
 
-
-    #* Fourth, add the remaining html headers to the full table of contents
+    # * Fourth, add the remaining html headers to the full table of contents
     full_table_of_contents += potential_headers
 
     # sort the full table of contents by line number
@@ -278,25 +299,27 @@ def parse_table_of_contents(readme_text):
     #     f"{'#' * x[1]} {x[0]}" for x in full_table_of_contents
     # ]
 
-    #^ Hey Copilot, I am adding the section levels back in. Here Just letting you know.
-    #* Copilot: Okay, I will keep that in mind.
-    #^ Where did I get rid of the # symbols? originally, I can't remember.
-    #* Copilot: I think you removed them when you were removing the spaces. In line 160.
-    #^ Graham: Nope. I just checked. That is not the spot.
-    #^ Graham: I found it. It was in line 237. section_name = line.replace("#", "")
-    #* Copilot: Ah! Okay. I will remember that.
-    #^ Graham: Thanks Copilot. I appreciate it. I added the html_enabled flag around that block to prevent the code from running if html is not enabled. That might be what was causing this issue.
+    # ^ Hey Copilot, I am adding the section levels back in. Here Just letting you know.
+    # * Copilot: Okay, I will keep that in mind.
+    # ^ Where did I get rid of the # symbols? originally, I can't remember.
+    # * Copilot: I think you removed them when you were removing the spaces. In line 160.
+    # ^ Graham: Nope. I just checked. That is not the spot.
+    # ^ Graham: I found it. It was in line 237. section_name = line.replace("#", "")
+    # * Copilot: Ah! Okay. I will remember that.
+    # ^ Graham: Thanks Copilot. I appreciate it. I added the html_enabled flag around that block to prevent the code from running if html is not enabled. That might be what was causing this issue.
 
-    #& Add the section levels back in
+    # & Add the section levels back in
     # full_table_of_contents = [
     #     f"{'#' * x[1]} {x[0]}" for x in full_table_of_contents
     # ]
-    #^ Graham: I removed the code above after adding the html enabled flag. I don't think it is necessary anymore. I will test it out and see if it works.
+    # ^ Graham: I removed the code above after adding the html enabled flag. I don't think it is necessary anymore. I will test it out and see if it works.
 
     # example values: [('Introduction', 1), ('Installation', 1), ('Usage', 1), ('Contributing', 1), ('License', 1)]
 
     # return the full table of contents
-    return full_table_of_contents # this is a list of tuples (section_name, section_level)
+    return (
+        full_table_of_contents  # this is a list of tuples (section_name, section_level)
+    )
 
 
 def startup():
@@ -321,6 +344,7 @@ def process_flow_controller():
     # using the table of contents, create the sections of the report notebook
     generate_report_notebook(project_name, table_of_contents, readme_text)
 
+
 def create_data_section(report_notebook):
     global readme_text
     # generate the data section of the report notebook
@@ -329,6 +353,7 @@ def create_data_section(report_notebook):
 
     # find the line that starts with "Data" and
     return
+
 
 def get_text(section_name, markdown_text):
     """
@@ -387,6 +412,7 @@ def get_text(section_name, markdown_text):
     except:
         markdown_text = "\nSection Text Not Found\n"
     return markdown_text
+
 
 def programmatic_pandas(readme_text, table_of_contents):
 
@@ -449,6 +475,7 @@ def programmatic_pandas(readme_text, table_of_contents):
 
     return markdown_cells
 
+
 def generate_report_notebook(project_name, table_of_contents, readme_text):
     # global readme_text
     global author, date, license_type
@@ -460,7 +487,7 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
     #   A markdown cell with the text from the readme.md file for that section
     #   add a code cell below this markdown cell for the user to add any code they want to the section.
 
-    #debug - print the table of contents shape
+    # debug - print the table of contents shape
     try:
         print("table_of_contents.shape: ", table_of_contents.shape)
     except:
@@ -486,7 +513,9 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
             print("\t\t\t" + section_name)
 
     # create a markdown cell with the project name
-    project_name = "# " + project_name # add a # symbol to the beginning of the project name
+    project_name = (
+        "# " + project_name
+    )  # add a # symbol to the beginning of the project name
     project_name = "# {ProjectName}\n**A project by {author}, prepared {date}**".format(
         ProjectName=project_name, author=author, date=date
     )
@@ -500,9 +529,9 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
     # add the markdown cell to the report notebook
     # report_notebook.cells.append(table_of_contents_cell)
 
-    #^ Graham: How do you suggest that I put the header level back into the table of contents?
-    #* Copilot: I think you can do this using the table_of_contents list. The table_of_contents list contains tuples that have this format: ('Steps for Data Cleaning in this Study', 2) for example. The first item in the tuple is the section name and the second item is the level of the section. The level is used to denote how many "#" symbols to put in front of the section name. So you can loop through the table_of_contents list and create a markdown cell for each section in the table of contents. You can use the level to determine how many "#" symbols to put in front of the section name. You can use the section name to get the text from the readme.md file for that section. Then you can add a code cell below this markdown cell for the user to add any code they want to the section.
-    #^ Graham: I like that, I'll give it a try.
+    # ^ Graham: How do you suggest that I put the header level back into the table of contents?
+    # * Copilot: I think you can do this using the table_of_contents list. The table_of_contents list contains tuples that have this format: ('Steps for Data Cleaning in this Study', 2) for example. The first item in the tuple is the section name and the second item is the level of the section. The level is used to denote how many "#" symbols to put in front of the section name. So you can loop through the table_of_contents list and create a markdown cell for each section in the table of contents. You can use the level to determine how many "#" symbols to put in front of the section name. You can use the section name to get the text from the readme.md file for that section. Then you can add a code cell below this markdown cell for the user to add any code they want to the section.
+    # ^ Graham: I like that, I'll give it a try.
 
     # looking at the table_of_contents list, I see that the first item in the list is the project name, and the second item is the table of contents. So I can loop through the table_of_contents list starting at index 2.
     # loop through the table_of_contents list starting at index 2
@@ -512,25 +541,23 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
         # get the section level
         section_level = section[1]
 
-
     # create a markdown cell for the Introduction (with the text from the readme.md file for the Introduction)
     # add a code cell below this markdown cell for the user to add any code they want to the Introduction.
     # get the list of sections from the table of contents that are level 1 sections
     introduction_name = [x[0] for x in table_of_contents if x[1] == 1][0]
 
-    #^ Graham: I am seeing an error here. "Exception has occurred: IndexError list index out of range". Do you know why this is happening?
-    #* Copilot: I think it's because you are trying to get the first item in the list, but the list is empty. I think you need to add a check to see if the list is empty before you try to get the first item in the list.
+    # ^ Graham: I am seeing an error here. "Exception has occurred: IndexError list index out of range". Do you know why this is happening?
+    # * Copilot: I think it's because you are trying to get the first item in the list, but the list is empty. I think you need to add a check to see if the list is empty before you try to get the first item in the list.
 
-    #^Graham: Hey, so I think the table of contents is not getting populated with the levels for the headers anymore. Where do you think I should look to fix this?
-    #* Copilot: I think you should look at the get_table_of_contents function. I think you may have changed something there that caused this. Additionally, I think you need to check the get_table_of_contents function. It's possible that you need to fix the regex expression there.
-    #^ Graham: Thanks, I'll take a look at that.
-    #* Copilot: No problem. Let me know if you need any help.
+    # ^Graham: Hey, so I think the table of contents is not getting populated with the levels for the headers anymore. Where do you think I should look to fix this?
+    # * Copilot: I think you should look at the get_table_of_contents function. I think you may have changed something there that caused this. Additionally, I think you need to check the get_table_of_contents function. It's possible that you need to fix the regex expression there.
+    # ^ Graham: Thanks, I'll take a look at that.
+    # * Copilot: No problem. Let me know if you need any help.
 
-    #^ Graham: I added full_table_of_contents = [(x[0], x[1]) for x in full_table_of_contents] # this is the full table of contents where the example values are [('Introduction', 1), ('Installation', 1), ('Usage', 1), ('Contributing', 1), ('License', 1)]. I think this is what we were looking for. The second value is now the level of the heading text. But I am still seeing an error here. "Exception has occurred: IndexError list index out of range". Do you know why this is happening?
-    #* Copilot: I think it's because you are trying to get the first item in the list, but the list is empty. I think you need to add a check to see if the list is empty before you try to get the first item in the list.
+    # ^ Graham: I added full_table_of_contents = [(x[0], x[1]) for x in full_table_of_contents] # this is the full table of contents where the example values are [('Introduction', 1), ('Installation', 1), ('Usage', 1), ('Contributing', 1), ('License', 1)]. I think this is what we were looking for. The second value is now the level of the heading text. But I am still seeing an error here. "Exception has occurred: IndexError list index out of range". Do you know why this is happening?
+    # * Copilot: I think it's because you are trying to get the first item in the list, but the list is empty. I think you need to add a check to see if the list is empty before you try to get the first item in the list.
 
-    #^ Graham:
-
+    # ^ Graham:
 
     # create a markdown cell with the section name
     introduction_section_name_cell = nbformat.v4.new_markdown_cell(
@@ -579,7 +606,6 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
         print("Report notebook path: " + report_path)
     with open(report_path, "w") as f:
         nbformat.write(report_notebook, f)
-
 
 
 process_flow_controller()
