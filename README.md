@@ -22,7 +22,6 @@
 - [Table of Contents](#table-of-contents-1)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
 - [Example Use Case](#example-use-case)
-- [Automatic Report Generator For Avid ReadMe Writers Version](#automatic-report-generator-for-avid-readme-writers-version)
 
 
 # Automatic Report Generator For Avid ReadMe Writers
@@ -40,7 +39,6 @@
 - [Table of Contents](#table-of-contents-1)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
 - [Example Use Case](#example-use-case)
-- [Automatic Report Generator For Avid ReadMe Writers Version](#automatic-report-generator-for-avid-readme-writers-version)
 
 
 # Automatic Report Generator For Avid ReadMe Writers
@@ -56,6 +54,18 @@ Happy Coding!
 # Example Use Case
 Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
 I can use this this tool to generate my overview notebook for the project as follows:
-$ python auto-report-generator-for-avid-readme-writers.py --output .jnlp $ open ~/.notebooks/$(dirname "$\.jnlps")
-You'll get something like this:
-# Automatic Report Generator For Avid ReadMe Writers Version
+
+```python
+import clark_kent_reporter as super_man
+# Point to the readme file that you want to convert
+readme_file = "README.md" # path to the readme file (absolute path).
+# Point to the notebook file that you want to generate
+notebook_file = "./reports/auto_report.ipynb" # path to the notebook file (relative path).
+```
+
+What we have so far is a set of locations one with the markdown that we want to convert, and the other with the notebook that we want to generate. Now we can use the following code to generate the notebook:
+
+```python
+$ python -m clark_kent_reporter -r README.md -n ./reports/auto_report.ipynb
+# note: this is untested. The best way is to run the script within the cloned repository.
+```
