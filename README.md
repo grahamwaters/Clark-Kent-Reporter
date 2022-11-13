@@ -26,7 +26,9 @@
 - [Table of Contents](#table-of-contents)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
 - [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
+- [How to Get Clark Running](#how-to-get-clark-running)
 - [Example Use Case](#example-use-case)
+- [Basic Steps to Generate a Report Notebook](#basic-steps-to-generate-a-report-notebook)
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -51,6 +53,25 @@ I hope this brings you as much joy as it does me!
 Happy Coding!
 
 ![separator](images/sep_1.gif)
+
+# How to Get Clark Running
+
+We recommend using a virtual environment for this. Don't worry if you've never done that before. We did all the heavy lifting for you by including the code here below. Just copy and paste!
+
+```bash
+conda create --name clark_kent_reporter python=3.9.6
+```
+Now that you have your virtual environment set up, you need to activate it. This is done by running the following command:
+```bash
+conda activate clark_kent_reporter
+```
+Then install the requirements:
+```bash
+pip3 install -r requirements.txt
+```
+You should be good to go!
+
+![separator](images/sep_1.gif)
 # Example Use Case
 Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
 I can use this this tool to generate my overview notebook for the project as follows:
@@ -68,6 +89,26 @@ What we have so far is a set of locations one with the markdown that we want to 
 $ python -m clark_kent_reporter -r README.md -n ./reports/auto_report.ipynb
 # note: this is untested. The best way is to run the script within the cloned repository.
 ```
+
+# Basic Steps to Generate a Report Notebook
+* Step One: Paste the Readme File into `MOCKUP_README.md` and save it in the root directory of the project.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Installation
 Until we are listed on PyPi you can clone the repo and install locally. I will update this section once we are listed on PyPi.

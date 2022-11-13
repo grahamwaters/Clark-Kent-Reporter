@@ -4,19 +4,33 @@ import os
 import nbformat
 import re
 import datetime as dt
+import configparser
 
-# Path to the directory containing the README file
-path = "readme.md"  # same directory as this script
-# Path to the scripts directory
-scripts_path = "scripts"
-# Path to the Notebooks directory
-notebooks_path = "notebooks"
-
-# Global Variables
+# user-defined variables
 project_name = "Reddit NLP Project"
 author = "Graham Waters"
-date = dt.datetime.now().strftime("%Y-%m-%d")
 license_text = "MIT License"
+
+# read the config file
+config = configparser.ConfigParser()
+config.read("config.ini")
+
+# get the values
+path = config["DEFAULT"]["path"]
+scripts_path = config["DEFAULT"]["scripts_path"]
+notebooks_path = config["DEFAULT"]["notebooks_path"]
+
+# print the values
+print(path)
+print(scripts_path)
+print(notebooks_path)
+
+# Global Variables
+
+date = dt.datetime.now().strftime("%Y-%m-%d")
+
+# set the readme text to blank
+readme_text = "" # initially the file is empty
 
 # read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)
 # What are the expected sections in a data science report notebook?
@@ -115,6 +129,7 @@ def parse_table_of_contents(readme_text):
 
 
 def startup():
+    global readme_text
     # read the readme.md file
     with open(path, "r") as f:
         readme_text = f.read()
@@ -295,10 +310,11 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
             print("\t\t\t" + section_name)
 
     # create a markdown cell with the project name
-    project_name = "Reddit NLP Project"
+    project_name = "# " + project_name # add a # symbol to the beginning of the project name
     project_name = "# {ProjectName}\n**A project by {author}, prepared {date}**".format(
         ProjectName=project_name, author=author, date=date
     )
+    # add the project name markdown cell to the notebook
     project_name_cell = nbformat.v4.new_markdown_cell(project_name)
     # add the markdown cell to the report notebook
     report_notebook.cells.append(project_name_cell)
