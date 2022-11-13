@@ -1,0 +1,236 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "nbformat",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nbformat",
+        "description": "nbformat",
+        "detail": "nbformat",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "configparser",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "configparser",
+        "description": "configparser",
+        "detail": "configparser",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "remove_markdown_comments",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def remove_markdown_comments(readme_text):\n    beginning_len = len(readme_text)\n    # remove the markdown comments from the readme.md file\n    # <!-- marks the start of a comment and --> marks the end of a comment\n    # comment_reg_pattern = r\"<!--(.*?)-->\"\n    # create a variable to hold the comment text\n    comment_text = \"\"\n    # find the first comment\n    comment_start = readme_text.find(\"<!--\")\n    # find the end of the comment",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_name",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def get_project_name(readme_text):\n    \"\"\"\n    get_project_name takes a string of text and returns a string\n    Parameters\n    :param readme_text: a string of text\n    :type readme_text: str\n    :return: a string\n    :rtype: str\n    \"\"\"\n    # get the name of the project from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "parse_table_of_contents",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def parse_table_of_contents(readme_text):\n    \"\"\"\n    parse_table_of_contents takes a string of text and returns a list of tuples\n    Parameters\n    :param readme_text: a string of text\n    :type readme_text: str\n    :return: a list of tuples\n    :rtype: list\n    \"\"\"\n    # parse the table of contents from the readme.md file",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "startup",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def startup():\n    global readme_text\n    # read the readme.md file\n    with open(path, \"r\") as f:\n        readme_text = f.read()\n    # parse the table of contents\n    table_of_contents = parse_table_of_contents(readme_text)\n    return table_of_contents, readme_text\ndef process_flow_controller():\n    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "process_flow_controller",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def process_flow_controller():\n    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.\n    global project_name\n    (\n        table_of_contents,\n        readme_text,\n    ) = startup()  # read the readme.md file and parse the table of contents\n    # using the table of contents, create the sections of the report notebook\n    generate_report_notebook(project_name, table_of_contents, readme_text)\ndef create_data_section(report_notebook):",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "create_data_section",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def create_data_section(report_notebook):\n    global readme_text\n    # generate the data section of the report notebook\n    # the data section is a markdown cell with the text from the readme.md file for the Data Section.\n    # This section is about explaining what kinds of data are in the dataset and how the data was collected.\n    # find the line that starts with \"Data\" and\n    return\ndef get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_special_blocks_from_text",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.\n    header_pattern = r'\\n\\|\\s'\n    #\n    # Now... for the special block body text...\n    # if you see a \\n followed by a | character you are in a new row of a table and you need to keep capturing text\n    body_pattern = r'\\n\\|(.*?)\\|\\n\\n'\n    # keep going until you see text followed by a | character followed by a \\n character followed by a \\n character and then stop. The text between where you started and where you stopped is the special block body text.\n    #end_pattern = r'\\|\\n\\n'",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def get_text(section_name, markdown_text):\n    \"\"\"\n    get_text takes a section name and a string of markdown text and returns a string of text\n    Parameters\n    :param section_name: a string of text\n    :type section_name: str\n    :param markdown_text: a string of text\n    :type markdown_text: str\n    :return: a string of text\n    :rtype: str",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "programmatic_pandas",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def programmatic_pandas(readme_text, table_of_contents):\n    # clear the destination df to make it clean and new (no artifacts from previous runs).\n    great_panda_df = pd.DataFrame(\n        columns=[\"section_name\", \"section_text\", \"section_level\"]\n    )\n    # The table of contents contains tuples that have this format: ('Steps for Data Cleaning in this Study', 2) for example. The first item in the tuple is the section name and the second item is the level of the section. The level is used to denote how many \"#\" symbols to put in front of the section name.\n    # if a section is level 2, then it belongs under the section that preceeded it with a level of 1. etc. So we need to keep track of the previous section name and level.\n    # create a variable to keep track of the previous section name\n    # I want markdown cells for all cells in the table of contents that are level 1 preceeded with a level one header in a markdown cell.\n    # if there are level 2 sections, then I want a markdown cell for the level 2 section preceeded with a level 2 header in a markdown cell.",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_report_notebook",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def generate_report_notebook(project_name, table_of_contents, readme_text):\n    # global readme_text\n    global author, date, license_type\n    # generate a jupyter notebook based on the table of contents in the readme.md file.\n    # the pattern it uses is:\n    # A header markdown cell with the project name\n    # For each section in the table of contents:\n    #   A markdown cell with the section name\n    #   A markdown cell with the text from the readme.md file for that section\n    #   add a code cell below this markdown cell for the user to add any code they want to the section.",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "project_name",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "project_name = \"my_project\" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "author",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "license_text",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "license_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "config = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "path = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "scripts_path",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "scripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "notebooks_path",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "notebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "date = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "readme_text",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "readme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning\n# 5. Data Exploration\n# 6. Data Analysis",
+        "detail": "scripts.main",
+        "documentation": {}
+    }
+]
