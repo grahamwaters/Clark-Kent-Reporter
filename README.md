@@ -1,5 +1,7 @@
-# The Clark Kent MultiTool
+# Clark Kent Reporter
 ## A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.
+
+![header](images/header.gif)
 
 [![Build Status](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool.svg?branch=master)](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool)
 [![Coverage Status](https://coveralls.io/repos/github/Clark-Kent-Multitool/Clark-Kent-Multitool/badge.svg?branch=master)](https://coveralls.io/github/Clark-Kent-Multitool/Clark-Kent-Multitool?branch=master)
@@ -13,7 +15,7 @@
 
 # Table of Contents
 
-- [The Clark Kent MultiTool](#the-clark-kent-multitool)
+- [Clark Kent Reporter](#clark-kent-reporter)
   - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
 - [Table of Contents](#table-of-contents)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
@@ -31,7 +33,7 @@
 
 # Table of Contents
 
-- [The Clark Kent MultiTool](#the-clark-kent-multitool)
+- [Clark Kent Reporter](#clark-kent-reporter)
   - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
 - [Table of Contents](#table-of-contents)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
@@ -50,6 +52,7 @@ Finally, It's worth noting that this software doesn't magically transform your w
 I hope this brings you as much joy as it does me!
 Happy Coding!
 
+![separator](images/sep_1.gif)
 # Example Use Case
 Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
 I can use this this tool to generate my overview notebook for the project as follows:
