@@ -72,14 +72,32 @@ readme_text = "" # initially the file is empty
 
 
 
-def remove_markdown_comments():
-    global readme_text
+def remove_markdown_comments(readme_text):
+    beginning_len = len(readme_text)
     # remove the markdown comments from the readme.md file
     # <!-- marks the start of a comment and --> marks the end of a comment
-    comment_reg_pattern = r"<!--.*?-->"
-    readme_text = re.sub(comment_reg_pattern, "", readme_text)
-    print('readme_text has been uncommentted')
+    # comment_reg_pattern = r"<!--(.*?)-->"
+    # create a variable to hold the comment text
+    comment_text = ""
+    # find the first comment
+    comment_start = readme_text.find("<!--")
+    # find the end of the comment
+    comment_end = readme_text.find("-->")
+    # while there are comments in the readme.md file
+    while comment_start != -1 and comment_end != -1:
+        # get the comment text
+        comment_text = readme_text[comment_start:comment_end + 3]
+        # remove the comment text from the readme.md file
+        readme_text = readme_text.replace(comment_text, "")
+        # find the next comment
+        comment_start = readme_text.find("<!--")
+        # find the end of the comment
+        comment_end = readme_text.find("-->")
+        print(comment_text[0:10],"..",comment_text[-10:])
+    ending_len = len(readme_text)
+    print(f"removed {beginning_len - ending_len} characters from the readme.md file")
 
+    return readme_text
 
 
 def get_project_name(readme_text):
@@ -133,7 +151,7 @@ def parse_table_of_contents(readme_text):
     project_name = get_project_name(readme_text)
 
     # remove the commments
-    remove_markdown_comments() # this function modifies the global variable readme_text
+    readme_text = remove_markdown_comments(readme_text) # this function modifies the global variable readme_text
 
     # split the readme.md file into lines
     lines = readme_text.split("\n")  # split on newlines
@@ -222,6 +240,9 @@ def get_text(section_name, markdown_text):
         # get the text for a section from the readme.md file
         # how? find the line that starts with the section name, and is not in the table of contents (using regex) then find the next line that starts with a "#" symbol. The text between those two lines is the text for the section.
 
+        # Removing comments
+        markdown_text = remove_markdown_comments(markdown_text) # this function removes any commented code from the readme.md file
+
         # step 1: find the line that starts with the section name
         pattern = r"^" + section_name + r".*?$" # the ^ symbol means the start of the line, the $ symbol means the end of the line, the .*? means any number of any characters
         section_name_line = re.findall(pattern, markdown_text, re.MULTILINE)[0] # this is a string
@@ -240,45 +261,133 @@ def get_text(section_name, markdown_text):
         # find the line number of the next line that starts with a "#" symbol
         next_section_header_line_number = section_header_line_numbers[0]
 
-        # step 4: get the text between those two lines
-        section_text = " ".join(lines[section_name_line_number + 1 : next_section_header_line_number])
-
-
-        # # the first line is the table of contents line so we skip it.
-
-        # # step 2: find the line number of that line
-        # # search the markdown text for the section line
-        # markdown_text = markdown_text[markdown_text.find(section_line) :]
-        # # what is the next section name?
-        # # Section names match the section_name pattern \n\n# Data Cleaning\n\n for example so we can use that to find the next section name.
-        # regex_section_pattern = r"\n\n# [A-Za-z ]+\n\n"
-        # next_section_name = re.findall(regex_section_pattern, markdown_text)[0]
-        # # find the line number of the next section name
-        # next_section_line_number = markdown_text.find(next_section_name)
-        # markdown_text = markdown_text[
-        #     :next_section_line_number
-        # ]  # remove the next section name from the markdown text. Now the markdown text only contains the text for the section.
-        # # remove the section name from the markdown text
-        # markdown_text = markdown_text.replace(section_line, "")
-        # remove the newlines
-        # markdown_text = markdown_text.replace("\n", " ")
-
-        # preserve the newline characters and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file.
+        # step 4: get the text between those two lines while keeping the newlines in the text
+        markdown_text = " ".join(lines[section_name_line_number + 1 : next_section_header_line_number])
 
         # also preserve the bullet points and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the * and the - characters. Also, the bullet points are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation. They may also be numeric i.e. 1, 2, 3, etc. We want to preserve that too.
-        markdown_text = section_text #
+
+
+
         bullet_points = re.findall(r"\n[ ]{0,4}[-*][ ]{1,4}", markdown_text)
+
+        # finding the bullet points is not working. It is finding the bullet points in the table of contents. We need to find the bullet points in the section text, not the table of contents. This is because the table of contents is a list of bullet points, and the section text is also a list of bullet points. We need to find the bullet points in the section text, not the table of contents.
+
+        # bullet points could be any of the following:
+        # - bullet point (pattern 1)
+        # * bullet point (pattern 2)
+        # 1. bullet point (pattern 3)
+        # 2. bullet point (any number) (pattern 4)
+        #  - bullet point (indented by 2 spaces) (pattern 5)
+        #  * bullet point (indented by 2 spaces)  (pattern 6)
+        # etc.
+
+        # find these patterns in the markdown text
+        pattern_1 = r"\n[ ]{0,4}[-][ ]{1,4}"
+        pattern_2 = r"\n[ ]{0,4}[*][ ]{1,4}"
+        pattern_3 = r"\n[ ]{0,4}[0-9]+[.][ ]{1,4}"
+        pattern_4 = r"\n[ ]{0,4}[0-9]+[.][ ]{1,4}"
+        pattern_5 = r"\n[ ]{2,4}[-][ ]{1,4}"
+        pattern_6 = r"\n[ ]{2,4}[*][ ]{1,4}"
+
+        # find the bullet points in the markdown text
+        bullet_points = re.findall(pattern_1, markdown_text)
+        bullet_points += re.findall(pattern_2, markdown_text)
+        bullet_points += re.findall(pattern_3, markdown_text)
+        bullet_points += re.findall(pattern_4, markdown_text)
+        bullet_points += re.findall(pattern_5, markdown_text)
+        bullet_points += re.findall(pattern_6, markdown_text)
+
+        # make sure there is a newline character at the end of the bullet point
+        bullet_points = [bullet_point + "\n" for bullet_point in bullet_points]
+
+        # replace the bullet points with the same bullet points, but with 4 spaces in front of them
+        bullet_points = [bullet_point.replace(bullet_point, "    " + bullet_point) for bullet_point in bullet_points]
+
+        # replace the bullet points in the markdown text with the new bullet points
+        for bullet_point in bullet_points:
+            markdown_text = markdown_text.replace(bullet_point.strip(), bullet_point)
+
+        # also preserve the code blocks and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the ``` characters. Also, the code blocks are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation.
+
+        # code blocks could be any of the following:
+        # ```python
+        # code
+        # ```
+        # ```python (indented by 2 spaces)
+        # code
+        # ```
+        # etc.
+
+        # find these patterns in the markdown text
+        pattern_1 = r"\n[ ]{0,4}```.*?\n.*?\n[ ]{0,4}```" # this pattern finds the code blocks that are not indented by 2 spaces
+        pattern_2 = r"\n[ ]{2,4}```.*?\n.*?\n[ ]{2,4}```" # this pattern finds the code blocks that are indented by 2 spaces
+
+        if re.findall(pattern_1, markdown_text):
+            code_blocks = re.findall(pattern_1, markdown_text)
+        elif re.findall(pattern_2, markdown_text):
+            code_blocks = re.findall(pattern_2, markdown_text)
+        else:
+            code_blocks = []
+
+        if len(code_blocks) > 0:
+            # find the code blocks in the markdown text
+
+            # make sure there is a newline character at the end of the code block
+            code_blocks = [code_block + "\n\n" for code_block in code_blocks]
+
+            # replace the code blocks with the same code blocks, but with 4 spaces in front of them
+            code_blocks = [code_block.replace(code_block, "    " + code_block) for code_block in code_blocks]
+
+            # replace the code blocks in the markdown text with the new code blocks
+            for code_block in code_blocks:
+                markdown_text = markdown_text.replace(code_block.strip(), code_block) # the strip() function removes the newline character at the end of the code block so that it can be replaced with the new code block that has a newline character at the end of it (the new code block is the same as the old code block, but with 4 spaces in front of it)
+
+        # also preserve the images and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the ![]() characters. Also, the images are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation.
+
+        # images could be any of the following:
+        # ![image](image.png)
+        # ![image](image.png) (indented by 2 spaces)
+        # etc.
+
+        # find these patterns in the markdown text
+        pattern_1 = r"\n[ ]{0,4}!\[.*?\]\(.*?\)"
+        pattern_2 = r"\n[ ]{2,4}!\[.*?\]\(.*?\)"
+
+        # find the images in the markdown text
+        images = re.findall(pattern_1, markdown_text, re.MULTILINE | re.DOTALL)
+        images += re.findall(pattern_2, markdown_text, re.MULTILINE | re.DOTALL)
+
+        # make sure there is a newline character at the end of the image
+        images = [image + "\n" for image in images]
+
+        # replace the images with the same images, but with 4 spaces in front of them
+        images = [image.replace(image, "    " + image) for image in images]
+
+        # replace the images in the markdown text with the new images
+        for image in images:
+            markdown_text = markdown_text.replace(image.strip(), image)
+
+
+
         for bullet_point in bullet_points:
             markdown_text = markdown_text.replace(
                 bullet_point, bullet_point.replace(" ", " ")
             )  # replace the space with a non-breaking space so that the markdown text looks the same as the readme.md file. The non-breaking space is a special character that looks like a space but it is not a space. It is a special character that tells the markdown renderer to render the space as a space. The markdown renderer will not render a space as a space if it is followed by a newline character. So we need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space.
 
-        # add  to the beginning of the text
-        markdown_text = "\n" + markdown_text
+        #^ Graham: Hey Copilot, why are my bullet points not staying formatted in the generated notebook?
+        #* Copilot: I don't know, but I can help you fix it. I think you need to replace the spaces with non-breaking spaces. I can do that for you.
+        #^ Graham: Why do I need to replace the spaces with non-breaking spaces?
+        #* Copilot: Non-breaking spaces are special characters that look like spaces but they are not spaces. They are special characters that tell the markdown renderer to render the space as a space. The markdown renderer will not render a space as a space if it is followed by a newline character. So we need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space.
+        #^ Graham: Thanks Copilot, that was very helpful. Could you share the code to do that?
+        #* Copilot: Sure, here you go. I think you need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space. I can do that for you. Here is the code: markdown_text = markdown_text.replace(bullet_point, bullet_point.replace(" ", " "))
+
+
+
+        markdown_text = "\n" + markdown_text # add a newline character to the beginning of the markdown text so that the markdown text looks the same as the readme.md file. The readme.md file has a newline character at the beginning of the text for each section.
         # add  to the end of the text
-        markdown_text = markdown_text + "\n"
+        markdown_text = markdown_text + "\n" # add a newline character to the end of the markdown text so that the markdown text looks the same as the readme.md file. The readme.md file has a newline character at the end of the text for each section. This is important because the markdown renderer will not render a newline character at the end of the text.
     except Exception as e:
-        markdown_text = "\nSection Text Not Found\n"
+        markdown_text = "\n\nSection Text Not Found\n\n"
         print(e)
     return markdown_text
 
