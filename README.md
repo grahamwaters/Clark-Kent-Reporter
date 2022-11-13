@@ -1,33 +1,22 @@
 # Clark Kent Reporter
 ## A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.
 
+---
+
 ![header](images/header.gif)
 
-[![Build Status](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool.svg?branch=master)](https://travis-ci.org/Clark-Kent-Multitool/Clark-Kent-Multitool)
-[![Coverage Status](https://coveralls.io/repos/github/Clark-Kent-Multitool/Clark-Kent-Multitool/badge.svg?branch=master)](https://coveralls.io/github/Clark-Kent-Multitool/Clark-Kent-Multitool?branch=master)
-[![Documentation Status](https://readthedocs.org/projects/clark-kent-multitool/badge/?version=latest)](https://clark-kent-multitool.readthedocs.io/en/latest/?badge=latest)
-[![PyPI version](https://badge.fury.io/py/Clark-Kent-Multitool.svg)](https://badge.fury.io/py/Clark-Kent-Multitool)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Version 1.0.0**
 
 **Created by Graham Waters**
 
-# Table of Contents
+<!-- add badges for the issues, release, latest updates, and stars/forks -->
 
-- [Clark Kent Reporter](#clark-kent-reporter)
-  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
-- [Table of Contents](#table-of-contents)
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
-- [Table of Contents](#table-of-contents-1)
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
-- [Example Use Case](#example-use-case)
-
-
-# Automatic Report Generator For Avid ReadMe Writers
-**Version 1.0.0**
-
-**Created by Graham Waters**
+[![GitHub issues](https://img.shields.io/github/issues/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/issues/grahamwaters/Clark-Kent-Reporter)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/v/release/grahamwaters/Clark-Kent-Reporter)
+[![GitHub last commit](https://img.shields.io/github/last-commit/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/last-commit/grahamwaters/Clark-Kent-Reporter)
+[![GitHub stars](https://img.shields.io/github/stars/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/stars/grahamwaters/Clark-Kent-Reporter)
+[![GitHub forks](https://img.shields.io/github/forks/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/forks/grahamwaters/Clark-Kent-Reporter)
 
 
 # Table of Contents
@@ -37,13 +26,37 @@
 - [Table of Contents](#table-of-contents)
 - [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
 - [Table of Contents](#table-of-contents-1)
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers-1)
+- [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
 - [Example Use Case](#example-use-case)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 
 # Automatic Report Generator For Avid ReadMe Writers
+**Version 1.0.0**
 
-Converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. If you've ever been under a time constraint and needed to generate a report quickly in Jupyter Notebook format but found that you wrote most of your analysis in a markdown file, then you just found the solution to our mutual dilemma.
+**Created by Graham Waters**
+
+
+# Table of Contents
+- [Clark Kent Reporter](#clark-kent-reporter)
+  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
+- [Table of Contents](#table-of-contents)
+- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
+- [Table of Contents](#table-of-contents-1)
+- [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
+- [Example Use Case](#example-use-case)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+
+# What does Clark Kent Reporter do?
+
+This tool converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. If you've ever been under a time constraint and needed to generate a report quickly in Jupyter Notebook format but found that you wrote most of your analysis in a markdown file, then you just found the solution to our mutual dilemma.
 
 This project is currently being developed in my free time, and any pull requests will be reviewed as soon as I can. There are some areas where it could be beefed up and made more robust and dynamic. I welcome your input.
 
@@ -65,10 +78,23 @@ readme_file = "README.md" # path to the readme file (absolute path).
 # Point to the notebook file that you want to generate
 notebook_file = "./reports/auto_report.ipynb" # path to the notebook file (relative path).
 ```
-
 What we have so far is a set of locations one with the markdown that we want to convert, and the other with the notebook that we want to generate. Now we can use the following code to generate the notebook:
 
 ```python
 $ python -m clark_kent_reporter -r README.md -n ./reports/auto_report.ipynb
 # note: this is untested. The best way is to run the script within the cloned repository.
 ```
+
+# Installation
+Until we are listed on PyPi you can clone the repo and install locally. I will update this section once we are listed on PyPi.
+
+# Contributing
+If you would like to contribute to this project, please feel free to fork the repository and submit a pull request. I will review the pull request as soon as I can. If you have any questions, please feel free to contact me at
+
+# License
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+# Acknowledgments
+I would like to thank the following people for their support and guidance:
+1. Superman - for being the inspiration for this project.
+2. Clark Kent, who is clearly not superman. Because he is just a mild mannered reporter.
