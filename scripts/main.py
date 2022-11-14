@@ -620,14 +620,16 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
 
     # write the report notebook to a file
     # if the file already exists, overwrite it, otherwise create a new file
-    report_path = os.getcwd() + "/notebooks/generated_report.ipynb"
+    proj = str(project_name.replace(" ","_").lower().strip())
+    # only keep the first 10 characters of the project name and take out any non-alphanumeric characters
+    proj = re.sub(r"[^a-zA-Z0-9]", "", proj)[:10]
+    report_path = os.getcwd() + f"/notebooks/{proj}_generated_report.ipynb"
     if os.path.exists(report_path):
         os.remove(report_path)
         print("Overwriting existing report notebook")
         print("Report notebook path: " + report_path)
     with open(report_path, "w") as f:
         nbformat.write(report_notebook, f)
-
 
 
 process_flow_controller()
