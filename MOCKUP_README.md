@@ -19,11 +19,11 @@
     - [File 3. spotify_tracks.csv](#file-3-spotify_trackscsv)
     - [File 4. low_level_audio_features.csv](#file-4-low_level_audio_featurescsv)
     - [File 5. track_features.csv](#file-5-track_featurescsv)
-- [Next Steps](#next-steps)
-  - [Get rid of columns that don't help predict genre](#get-rid-of-columns-that-dont-help-predict-genre)
-  - [Look into the pandas join function](#look-into-the-pandas-join-function)
-  - [The end goal is to have single dataframe joining five tables on the track id column](#the-end-goal-is-to-have-single-dataframe-joining-five-tables-on-the-track-id-column)
+  - [Comments about the Next Steps](#comments-about-the-next-steps)
+    - [Get rid of columns that don't help predict genre](#get-rid-of-columns-that-dont-help-predict-genre)
+    - [Look into the pandas join function](#look-into-the-pandas-join-function)
   - [EDA - Exploratory Data Analysis](#eda---exploratory-data-analysis)
+    - [Loading The Data from the Files](#loading-the-data-from-the-files)
     - [What are the most popular genres?](#what-are-the-most-popular-genres)
     - [What are the most popular artists?](#what-are-the-most-popular-artists)
     - [What correlations are there between the features?](#what-correlations-are-there-between-the-features)
@@ -210,16 +210,36 @@ We have a labeled dataset of spotify songs that have been labeled with a genre. 
 
 *source:*
 
-# Next Steps
+## Comments about the Next Steps
 
-## Get rid of columns that don't help predict genre
-## Look into the pandas join function
-## The end goal is to have single dataframe joining five tables on the track id column
+### Get rid of columns that don't help predict genre
+### Look into the pandas join function
 
+The end goal is to have single dataframe joining five tables on the track id column
 note: check if track id exists in all tables
 
 ## EDA - Exploratory Data Analysis
 Check for the trends in the data to see the correlations, skewness and kurtosis of the data, how they relate to dependent variable, and how they relate to each other.
+
+
+### Loading The Data from the Files
+Using pandas to load the data from the files into dataframes.
+
+```python
+# import the data from the csv files into pandas dataframes (data/SpotGenTrack)
+df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')
+df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')
+df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')
+# FeaturesExtracted from the audio files
+df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')
+df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')
+```
+
+
+
+
+
+
 
 ### What are the most popular genres?
 
