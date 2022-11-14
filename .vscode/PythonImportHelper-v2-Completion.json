@@ -63,11 +63,74 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "df_albums",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
+        "label": "df_artists",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
+        "label": "df_tracks",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
+        "label": "df_features",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
+        "label": "df_lowlevelaudio",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
+        "label": "genre_counts",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "peekOfCode": "genre_counts = df_tracks['playlist'].value_counts()",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
+        "documentation": {}
+    },
+    {
         "label": "df_albums",
         "kind": 5,
         "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)",
         "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "documentation": {}
     },
@@ -76,7 +139,7 @@
         "kind": 5,
         "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)",
         "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "documentation": {}
     },
@@ -85,7 +148,7 @@
         "kind": 5,
         "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)",
         "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "documentation": {}
     },
@@ -94,7 +157,7 @@
         "kind": 5,
         "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
         "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "documentation": {}
     },
@@ -103,7 +166,16 @@
         "kind": 5,
         "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
+        "label": "genre_counts",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "genre_counts = df_tracks['playlist'].value_counts()",
         "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
         "documentation": {}
     },
@@ -139,16 +211,7 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def startup():\n    global readme_text\n    # read the readme.md file\n    with open(path, \"r\") as f:\n        readme_text = f.read()\n    # parse the table of contents\n    table_of_contents = parse_table_of_contents(readme_text)\n    return table_of_contents, readme_text\ndef process_flow_controller():\n    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.",
-        "detail": "scripts.main",
-        "documentation": {}
-    },
-    {
-        "label": "process_flow_controller",
-        "kind": 2,
-        "importPath": "scripts.main",
-        "description": "scripts.main",
-        "peekOfCode": "def process_flow_controller():\n    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.\n    global project_name\n    (\n        table_of_contents,\n        readme_text,\n    ) = startup()  # read the readme.md file and parse the table of contents\n    # using the table of contents, create the sections of the report notebook\n    generate_report_notebook(project_name, table_of_contents, readme_text)\ndef create_data_section(report_notebook):",
+        "peekOfCode": "def startup(path=path):\n    global readme_text\n    # read the readme.md file\n    with open(path, \"r\") as f:\n        readme_text = f.read()\n    # parse the table of contents\n    table_of_contents = parse_table_of_contents(readme_text)\n    return table_of_contents, readme_text\ndef create_data_section(report_notebook):\n    global readme_text",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -207,11 +270,38 @@
         "documentation": {}
     },
     {
+        "label": "generate_report_py_file",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def generate_report_py_file():\n    proj = str(project_name.replace(\" \", \"_\").lower().strip())\n    first_line_break = proj.find(\"\\n\")  # get the index of the first line break\n    proj = \"\".join([char for char in proj[:first_line_break] if char.isalnum()])\n    proj = proj[:40]\n    report_path = os.getcwd() + f\"/notebooks/{proj}_generated_report.ipynb\"\n    if generate_python_script_flag:\n        # save the python code to another file (a python script)\n        # if the file already exists, overwrite it, otherwise create a new file\n        # the python script will be saved in the same folder as the report notebook",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "process_flow_controller",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def process_flow_controller(readme_path=path,py_path=scripts_path,ipynb_path=notebooks_path):\n    \"\"\"\n    process_flow_controller takes a string of text and returns a list of tuples\n    _extended_summary_\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional\n    :param ipynb_path: a string of text that is the path to the notebooks folder, defaults to notebooks_path\n    :type ipynb_path: str, optional",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "background_process_flow",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def background_process_flow(readme_path=None,py_path=None):\n    # what is the purpose of this function?\n    # this function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    \"\"\"\n    background_process_flow takes a string of text and returns a list of tuples. This function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional\n    \"\"\"",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
         "label": "project_name",
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")",
+        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -220,7 +310,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -229,7 +319,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]",
+        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -238,7 +328,16 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "execute_in_background_flag",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "execute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },
