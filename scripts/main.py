@@ -5,7 +5,7 @@ import nbformat
 import re
 import datetime as dt
 import configparser
-
+import numpy as np
 # user-defined variables
 project_name = "my_project" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
 author = "Graham Waters"
@@ -223,6 +223,47 @@ def create_data_section(report_notebook):
     # find the line that starts with "Data" and
     return
 
+
+def get_special_blocks_from_text(text):
+
+
+    # if you see a \n followed by a | character followed by a space, then you are in a special block header and you should start a new special block
+    # watch for the next \n character and stop when you see it. The text between where you started and where you stopped is the special block header text.
+    header_pattern = r'\n\|\s'
+    #
+    # Now... for the special block body text...
+    # if you see a \n followed by a | character you are in a new row of a table and you need to keep capturing text
+    body_pattern = r'\n\|(.*?)\|\n\n'
+    # keep going until you see text followed by a | character followed by a \n character followed by a \n character and then stop. The text between where you started and where you stopped is the special block body text.
+    #end_pattern = r'\|\n\n'
+
+    # find the first match for the header pattern
+    header_match = re.search(header_pattern, text) # this is a string
+    # find the index of the first match for the header pattern
+    header_match_index = header_match.start() # this is an integer
+    # find the first match for the body pattern after the header pattern
+    body_match = re.search(body_pattern, text[header_match_index:]) # this is a string
+    # find the index of the first match for the body pattern after the header pattern
+    body_match_index = body_match.start() + header_match_index # this is an integer
+    # get the special block header text
+    # with start and end
+    special_block_header_text = text[header_match_index:body_match_index]
+    # get the special block body text
+    special_block_body_text = text[body_match_index:]
+
+
+    # add the special block header text to the body text separated by a newline
+    special_block_text = special_block_header_text + '\n' + special_block_body_text
+
+    # return the special block header text and the special block body text
+    return special_block_text
+
+
+
+
+
+
+
 def get_text(section_name, markdown_text):
     """
     get_text takes a section name and a string of markdown text and returns a string of text
@@ -243,28 +284,50 @@ def get_text(section_name, markdown_text):
         # Removing comments
         markdown_text = remove_markdown_comments(markdown_text) # this function removes any commented code from the readme.md file
 
+
+
+        # find the special blocks in the text and return them as a list of strings (each string is a special block of text)
+        #!special_blocks = get_special_blocks_from_text(markdown_text)
+        #!print("length of special blocks: ", len(special_blocks))
+        #!print("special blocks: ", special_blocks)
+
+
+        # we want to preserve the tables that we find and reproduce them in the report notebook as they are formatted in the readme.md file. Find any in this section and save it to the section text variable.
+        # take the tables out of the markdown text and put them in a list, preserving the order of the tables in the markdown text
+
+        # this list of tables should be a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
+        # the table location is the index of the table in the markdown text
+        # the table text is the text of the table in the markdown text
+        # tables = re.findall(table_pattern, markdown_text) # this is a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
+
+        # # remove the tables from the markdown text
+        # markdown_text = re.sub(table_pattern, "", markdown_text)
+
         # step 1: find the line that starts with the section name
         pattern = r"^" + section_name + r".*?$" # the ^ symbol means the start of the line, the $ symbol means the end of the line, the .*? means any number of any characters
-        section_name_line = re.findall(pattern, markdown_text, re.MULTILINE)[0] # this is a string
+        section_name_line = re.findall(pattern, markdown_text, re.MULTILINE)[0] # this is a string of text containing the section name
         # step 2: find the line number of that line
         section_name_line_number = markdown_text.split("\n").index(section_name_line)
-
         # step 3: find the next line that starts with a "#" symbol
         lines = markdown_text.split("\n")
-
         # find the line numbers of the lines that start with a "#" symbol
         section_header_line_numbers = [i for i, line in enumerate(lines) if line.startswith("#")]
-
         # find the line numbers of the lines that start with a "#" symbol that are after the line that starts with the section name
         section_header_line_numbers = [i for i in section_header_line_numbers if i > section_name_line_number]
-
         # find the line number of the next line that starts with a "#" symbol
         next_section_header_line_number = section_header_line_numbers[0]
 
+        # add the tables back into the markdown text
+        # markdown_text = markdown_text.split("\n") # split the markdown text into lines
+        # for table in tables:
+        #     markdown_text.insert(table[1], table[0])
+        # markdown_text = "\n".join(markdown_text) # join the markdown text back into a string
+
+        # markdown_text = " ".join(markdown_text) # this is a string of text with the tables in it
         # step 4: get the text between those two lines while keeping the newlines in the text
         markdown_text = " ".join(lines[section_name_line_number + 1 : next_section_header_line_number])
-
         # also preserve the bullet points and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the * and the - characters. Also, the bullet points are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation. They may also be numeric i.e. 1, 2, 3, etc. We want to preserve that too.
+
 
 
 
@@ -389,6 +452,11 @@ def get_text(section_name, markdown_text):
     except Exception as e:
         markdown_text = "\n\nSection Text Not Found\n\n"
         print(e)
+
+
+    # the tables have this  | |  in them replace with  |\n|
+    markdown_text = markdown_text.replace('| |', '|\n|')
+
     return markdown_text
 
 

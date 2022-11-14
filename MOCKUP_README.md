@@ -1,196 +1,274 @@
+# Analysis of Spotify Tracks with Neural Networks
 
-<p align="center">
-    Lorebook Generator Engine for use with NovelAI
-</p>
+<!-- make a two column table with Part One on the left and Part Two on the right as headers -->
 
-# Lorebook Generator Engine for use with NovelAI
+| Part One | Part Two |
+|----------|----------|
+| [Part One](#part-one) | [Part Two](#part-two) |
+| Classification with NNets | Clustering with DBScan|
 
-[![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md "Go to contributions doc") [![Made with Python](https://img.shields.io/badge/Python->=3.6-blue?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
-![license](https://img.shields.io/github/license/grahamwaters/lorebook_generator_for_novelai)
-
-## Table of Contents
-
+# Table of Contents
+- [Analysis of Spotify Tracks with Neural Networks](#analysis-of-spotify-tracks-with-neural-networks)
 - [Table of Contents](#table-of-contents)
-
-- [Introduction](#introduction)
-
-- [Installation](#installation)
-
-- [Usage](#usage)
-
-- [Contributing](#contributing)
-
-- [License](#license)
-
-
-<!-- adding shields for contributor count/chat on discord and coverage -->
-
-
-<!-- <p align="center">
-    <a href="https://github.com/badges/shields/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/NovelAI/Lorebook" /></a>
-    <a href="https://discord.gg/NovelAI" alt="Discord">
-        <img src="https://img.shields.io/discord/729675425767811142" /></a>
-        </a>
-</p> -->
-
-
-## Introduction
-
-This repo is designed to help all of us as authors using NovelAI. It pulls from Wikipedia articles to automatically generate lorebooks for real places or years and pretty much anything you could find on Wikipedia using python's wikipedia library.
-The repo contains two different versions: a basic one that generates based on a CSV file, 'characters.csv' and a more advanced version that implements multiple keywords for a more tailored search.
-
-
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url] -->
-
-
-
-
-
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-This project is designed to augment the fantastic work being done by the NovelAI team to make AI writing a reality. In its simplest form, this tool provides the extra thoughts that you want to remind your AI of when it is writing. In its more advanced form, it can be used to generate a lorebook for a specific year or place, which can be used to help the AI understand the world it is writing about.
-
-
-### Basic Comments and Feedback (so far)
-
-* The feedback we have received about the tool's current functionality is encouraging.
-* Lorebooks are a source of insight that are critical for any author. Having a human in the loop with this process is one essential component that has been mentioned several times.
-
-*Feel free to add your comments on our project board or in a messgae to us on Discord.*
-
-
-![](images/main_concept.png)
-
-## How to use this repository
-
-To use this lorebook generator, follow these steps:
-
-- If you are going to contribute or add things to the repository, fork it before you start.
-- To start, you need to clone the repo to your local machine. You can do this by running the following command in your terminal:
-
-Note: you will need to replace the url with your forked repos url. If you are not going to contribute, you can use the original url.
-
-```bash
-git clone https://github.com/grahamwaters/lorebook_generator_for_novelai
-```
-
-Then make sure you navigate into the directory:
-
-```bash
-cd lorebook_generator_for_novelai
-```
-
-- Next, you need to install the dependencies. You can do this by running the following command:
-
-```bash
-pip install -r requirements.txt
-```
-
-So, what exactly does this do? Well, it installs all of the dependencies that are required to run the code. You can see the dependencies in the requirements.txt file.
-
-## How does the basic version work?
-
-### Figure A. Basic version (example of keywords)
-![example1](images/example1.png)
-You can easily tell that in a wikipedia article, the links are usually some sort of entity or concept. In the figure above, you can see that `Queen Victoria`, `Rudyard Kipling` and `Charles Dickens` are all hyperlinks. These will be extracted by our code and used to either reinforce a lorebook to make it more robust or to create a lorebook from scratch.
-### Mode 1. Basic Mode - Using a CSV file to generate lorebooks
-- Once you have it cloned, populate the `characters.csv` file with your chosen keywords. (You can use the example file as a template.)
-- Then run the python script [scripts/03_lorebook_from_wiki_withpulls.py](scripts/03_lorebook_from_wiki_withpulls.py), and it will generate a lorebook for you. This lorebook will be named `lorebook_generated.lorebook` and will be saved in the `supporting_files` folder.
-
-### Mode 2. Subtopics -> to keywords -> to lorebook
-If you're feeling adventurous but not super productive, you can provide one topic (wikipedia page) to the [mode_2](./scripts/04_get_relevant_subtopics.py) script and it will generate a list of keywords that are relevant to that topic. Then it will generate a lorebook for you based on those keywords. This is a good way to get a quick lorebook for a topic that you don't know much about. It does currently have limitations in that it will provide WAY more information than you may need for a lorebook. So you may need to do some editing to get it to a place where you're happy with it.
-
-
-
-![](images/greatpyramid.png)
-
-The code pulls the wiki page for each character or topic/place in the provided characters file. In the case of the pyramid of Giza, it will scan the text of the article for the significant NNS and NNPS (nouns) and then generate a lorebook with the article's text as the meat of the entry, and each of the unique words will be added in as keywords for NovelAI (which will allow the AI to trigger this entry). The script will also generate a list of the nouns it found in the article, which you can use to add to the characters.csv file if you are interested in building out a more robust contextually dense lorebook.
-
-- Once you have a lorebook created, you can upload the lorebook to NovelAI and use it to add background detail to your stories and characters.
-# How to Contribute:
-
-Have an idea?
-Make a pull request! Don't be shy!
-
-We are seeking contributors that are skilled at project organization and formatting. If you are interested in helping out, please contact me on Discord: `@its_graham#7425`
-Also, feel free to open issues, pull requests, and make suggestions for this project here on GitHub as well. Working together, we could add some more features to the program, like web scraping historical documents or corpora from Project Gutenberg! That would be really informative.
-
-## Included Files -
-- [year_specific_lorebook.py](scripts/01_lorebook_from_year.py)
-This script generates a lorebook based on a year. It pulls from Wikipedia articles and generates a lorebook based on the year you input. It also generates a list of characters that are mentioned in the article. This is a good way to get a feel for the program and how it works.
-
-- [Lorebook From Articles](scripts/02_lorebook_from_downloaded_wiki_articles.py)
-This script generates a lorebook based on a list of keywords. It pulls from Wikipedia articles and generates a lorebook based on the keywords you input. It also generates a list of characters that are mentioned in the article. This is a good way to get a feel for the program and how it works.
-
-- [characters.csv](characters.csv)
-
-This is a CSV file that contains a list of characters that are mentioned in the lorebook. It is generated by the scripts above and will be originally populated by the author to fit their story.
-
-
-# Areas Currently in Development
-- [ ] Working through the notebooks in `notebooks/` to make sure they are up to date with the scripts in `scripts/` and that they are needed.
-- [ ] Improving the quality of the generated lorebooks in the following areas:
-  - [ ] Parsed Text Extraction Valence Optimization - Currently the text extraction is not perfect. We need to improve the valence of the text extraction to make sure that the text is relevant to the topic being queried. This is a big one.
-  - [ ] Integrating sklearn or potentially other libraries to improve the quality of the generated text. (i.e., PyTorch, TensorFlow, etc.)
-  - [ ] Identification of instances in the text where the following pattern exists:
-    - [ ] `character one` and `character two` are both mentioned within some distance `d` of each other. This is an interesting method of identifying characters that are related to each other. Proximity could be useful in determining how these topics or characters should be considered.
-
-
-- The code is currently adding a huge number of keys to the lorebook. This is potentially causing problems on the server side of NovelAI. I will reduce the key count to less than fifty and see if that helps.
-
-
-
-
-
-
-## Future Development Goals
-- [place_specific_lorebook.py](scripts/02_lorebook_from_place.py) - This script will be used to generate lorebooks from a specific place. We will do this by using the Wikipedia library to search for a place and then using the article text as the lorebook entry.
-
-I find [jidbc's work with gutenberg](https://github.com/jldbc/gutenberg.git) as a recommender system to be particularly fascinating. This will make a great addition to the project. I will be working on integrating this into the project in the near future.
-
-# Notes on the Git Ignore
-Make sure to include the following in your `.gitignore` when you fork this repo:
-- /wikipedia_pages
-- /master_pages
-- .lorebook
-
-This will ensure that your literary work is kept confidential and that it is separated from the code improvements you discover along the way.
-
-
-## Authors
-
-- [@grahamwaters](https://www.github.com/grahamwaters)
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+- [Executive Summary](#executive-summary)
+- [Part 1: Using Clustering on Spotify data to predict genres of songs](#part-1-using-clustering-on-spotify-data-to-predict-genres-of-songs)
+- [What Data is available in our datasets?](#what-data-is-available-in-our-datasets)
+  - [Data Dictionary](#data-dictionary)
+    - [File 1. data_by_genres.csv](#file-1-data_by_genrescsv)
+    - [File 2. spotify_artists.csv](#file-2-spotify_artistscsv)
+    - [File 3. spotify_tracks.csv](#file-3-spotify_trackscsv)
+    - [File 4. low_level_audio_features.csv](#file-4-low_level_audio_featurescsv)
+    - [File 5. track_features.csv](#file-5-track_featurescsv)
+- [Next Steps](#next-steps)
+  - [Get rid of columns that don't help predict genre](#get-rid-of-columns-that-dont-help-predict-genre)
+  - [Look into the pandas join function](#look-into-the-pandas-join-function)
+  - [The end goal is to have single dataframe joining five tables on the track id column](#the-end-goal-is-to-have-single-dataframe-joining-five-tables-on-the-track-id-column)
+  - [EDA - Exploratory Data Analysis](#eda---exploratory-data-analysis)
+    - [What are the most popular genres?](#what-are-the-most-popular-genres)
+    - [What are the most popular artists?](#what-are-the-most-popular-artists)
+    - [What correlations are there between the features?](#what-correlations-are-there-between-the-features)
+    - [What does the distribution of the features look like?](#what-does-the-distribution-of-the-features-look-like)
+    - [How do each of the features relate to the target (genre)?](#how-do-each-of-the-features-relate-to-the-target-genre)
+  - [Data Preprocessing](#data-preprocessing)
+    - [Missing data](#missing-data)
+    - [types of data (categorical, numerical, ordinal)](#types-of-data-categorical-numerical-ordinal)
+    - [standardize the columns (scale the data).](#standardize-the-columns-scale-the-data)
+    - [Encode the categorical data (one hot encoding) use get dummies (vs one hot encoding)](#encode-the-categorical-data-one-hot-encoding-use-get-dummies-vs-one-hot-encoding)
+  - [Start building the models](#start-building-the-models)
+    - [Gradient Boosting Model](#gradient-boosting-model)
+    - [Random Forest Model](#random-forest-model)
+    - [Support Vector Machine potentially.](#support-vector-machine-potentially)
+    - [Use A neural network (deep learning)](#use-a-neural-network-deep-learning)
+  - [Evaluate the models](#evaluate-the-models)
+- [Part 2. Genre Generation with DBSSCAN Clustering](#part-2-genre-generation-with-dbsscan-clustering)
+- [Components to this section of the project:](#components-to-this-section-of-the-project)
+
+# Executive Summary
+
+This project is a continuation of the previous project, which was a classification problem. The goal of this project is to use the same data set and use clustering to identify potential genres that are not named after traditional genres but are generated by the algorithm.
+
+# Part 1: Using Clustering on Spotify data to predict genres of songs
+We have a labeled dataset of spotify songs that have been labeled with a genre. In the first part of this project we want to use the features of the songs to predict the genre. We will use several methods, culminating in the use of a neural network to predict the genre.
+
+# What Data is available in our datasets?
+
+## Data Dictionary
+
+### File 1. data_by_genres.csv
+
+| Column Name | Description |
+|-------------|-------------|
+| genre | The genre of the song |
+| acousticness | A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic. |
+| danceability | Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable. |
+| duration_ms | The duration of the track in milliseconds. |
+| energy | Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. |
+| instrumentalness | Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. |
+| key | The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. |
+| liveness | Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. |
+| loudness | The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db. |
+| mode | Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0. |
+| speechiness | Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks. |
+| tempo | The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration. |
+| time_signature | An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure). |
+| valence | A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). |
+
+*source: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/*
+
+### File 2. spotify_artists.csv
+
+<!-- 'artist_popularity', 'followers', 'genres', 'id', 'name','track_id', 'track_name_prev', 'type' -->
+| Column Name | Description |
+|-------------|-------------|
+| artist_popularity | The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks. |
+| followers | The number of followers the artist has. |
+| genres | A list of the genres the artist is associated with. For example: “Prog Rock” , “Post-Grunge”. (If not yet classified, the array is empty.) |
+| id | The Spotify ID for the artist. |
+| name | The name of the artist. |
+| track_id | The Spotify ID for the track. |
+| track_name_prev | The name of the track. |
+| type | The object type: “artist” |
+
+*source: https://developer.spotify.com/documentation/web-api/reference/artists/get-artist/*
+
+### File 3. spotify_tracks.csv
+
+<!-- 'acousticness', 'album_id', 'analysis_url', 'artists_id','available_markets', 'country', 'danceability', 'disc_number',
+'duration_ms', 'energy', 'href', 'id', 'instrumentalness', 'key','liveness', 'loudness', 'lyrics', 'mode', 'name', 'playlist','popularity', 'preview_url', 'speechiness', 'tempo', 'time_signature','track_href', 'track_name_prev', 'track_number', 'uri', 'valence','type' -->
+| Column Name | Description |
+|-------------|-------------|
+| acousticness | A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic. |
+| album_id | The Spotify ID for the album. |
+| analysis_url | An HTTP URL to access the full audio analysis of this track. An access token is required to access this data. |
+| artists_id | The Spotify ID for the artist. |
+| available_markets | A list of the countries in which the track can be played, identified by their ISO 3166-1 alpha-2 code. |
+| country | The country of the album, identified by its ISO 3166-1 alpha-2 code. |
+| danceability | Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable. |
+| disc_number | The disc number (usually 1 unless the album consists of more than one disc). |
+| duration_ms | The duration of the track in milliseconds. |
+| energy | Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. |
+| href | A link to the Web API endpoint providing full details of the track. |
+| id | The Spotify ID for the track. |
+| instrumentalness | Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. |
+| key | The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. |
+| liveness | Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. |
+| loudness | The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db. |
+| lyrics | The lyrics of the track. |
+| mode | Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0. |
+| name | The name of the track. |
+| playlist | The name of the playlist. |
+| popularity | The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time. |
+| preview_url | A link to a 30 second preview (MP3 format) of the track. |
+| speechiness | Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks. |
+| tempo | The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration. |
+| time_signature | An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure). |
+| track_href | A link to the Web API endpoint providing full details of the track. |
+| track_name_prev | The name of the track. |
+| track_number | The number of the track. If an album has several discs, the track number is the number on the specified disc. |
+| uri | The Spotify URI for the track. |
+| valence | A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). |
+| type | The object type: “track” |
+
+*source: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/*
+
+### File 4. low_level_audio_features.csv
+
+<!-- columns in the lowlevelaudio file:  Index(['Unnamed: 0', 'Chroma_1', 'Chroma_10', 'Chroma_11', 'Chroma_12',
+       'Chroma_2', 'Chroma_3', 'Chroma_4', 'Chroma_5', 'Chroma_6',
+       ...
+       'Tonnetz_4', 'Tonnetz_5', 'Tonnetz_6', 'ZCR', 'entropy_energy',
+       'spectral_bandwith', 'spectral_centroid', 'spectral_rollOff_max',
+       'spectral_rollOff_min', 'track_id'],
+      dtype='object', length=209) -->
+
+| Column Name | Description |
+|-------------|-------------|
+| Chroma_1 | Chroma feature 1 |
+| Chroma_10 | Chroma feature 10 |
+| Chroma_11 | Chroma feature 11 |
+| Chroma_12 | Chroma feature 12 |
+| Chroma_2 | Chroma feature 2 |
+| Chroma_3 | Chroma feature 3 |
+| Chroma_4 | Chroma feature 4 |
+| Chroma_5 | Chroma feature 5 |
+| Chroma_6 | Chroma feature 6 |
+| Chroma_7 | Chroma feature 7 |
+| Chroma_8 | Chroma feature 8 |
+| Chroma_9 | Chroma feature 9 |
+| MFCC_1 | MFCC feature 1 |
+| MFCC_10 | MFCC feature 10 |
+| MFCC_11 | MFCC feature 11 |
+| MFCC_12 | MFCC feature 12 |
+| MFCC_13 | MFCC feature 13 |
+| MFCC_14 | MFCC feature 14 |
+| MFCC_15 | MFCC feature 15 |
+| MFCC_16 | MFCC feature 16 |
+| MFCC_17 | MFCC feature 17 |
+| MFCC_18 | MFCC feature 18 |
+| MFCC_19 | MFCC feature 19 |
+| MFCC_2 | MFCC feature 2 |
+| MFCC_20 | MFCC feature 20 |
+| MFCC_3 | MFCC feature 3 |
+| MFCC_4 | MFCC feature 4 |
+| MFCC_5 | MFCC feature 5 |
+| MFCC_6 | MFCC feature 6 |
+| MFCC_7 | MFCC feature 7 |
+| MFCC_8 | MFCC feature 8 |
+| MFCC_9 | MFCC feature 9 |
+| Tonnetz_1 | Tonnetz feature 1 |
+| Tonnetz_2 | Tonnetz feature 2 |
+| Tonnetz_3 | Tonnetz feature 3 |
+| Tonnetz_4 | Tonnetz feature 4 |
+| Tonnetz_5 | Tonnetz feature 5 |
+| Tonnetz_6 | Tonnetz feature 6 |
+| ZCR | Zero Crossing Rate |
+| entropy_energy | Entropy of the energy |
+| spectral_bandwith | Spectral Bandwith |
+| spectral_centroid | Spectral Centroid |
+| spectral_rollOff_max | Spectral RollOff Max |
+| spectral_rollOff_min | Spectral RollOff Min |
+| track_id | Spotify track ID |
+
+*source:*
+
+### File 5. track_features.csv
+
+<!-- columns in the features file:  Index(['Unnamed: 0', 'mean_syllables_word', 'mean_words_sentence',
+       'n_sentences', 'n_words', 'sentence_similarity', 'track_id',
+       'vocabulary_wealth'],
+      dtype='object') -->
+
+| Column Name | Description |
+|-------------|-------------|
+| mean_syllables_word | Mean number of syllables per word |
+| mean_words_sentence | Mean number of words per sentence |
+| n_sentences | Number of sentences |
+| n_words | Number of words |
+| sentence_similarity | Sentence similarity |
+| track_id | Spotify track ID |
+| vocabulary_wealth | Vocabulary wealth |
+
+*source:*
+
+# Next Steps
+
+## Get rid of columns that don't help predict genre
+## Look into the pandas join function
+## The end goal is to have single dataframe joining five tables on the track id column
+
+note: check if track id exists in all tables
+
+## EDA - Exploratory Data Analysis
+Check for the trends in the data to see the correlations, skewness and kurtosis of the data, how they relate to dependent variable, and how they relate to each other.
+
+### What are the most popular genres?
+
+### What are the most popular artists?
+
+### What correlations are there between the features?
+
+### What does the distribution of the features look like?
+
+### How do each of the features relate to the target (genre)?
+
+
+
+## Data Preprocessing
+
+### Missing data
+### types of data (categorical, numerical, ordinal)
+### standardize the columns (scale the data).
+Using Standard Scaler to scale the data. This will make the data more normal and will help with the models.
+### Encode the categorical data (one hot encoding) use get dummies (vs one hot encoding)
+Using pd.get_dummies to encode the categorical data. This will make the data more normal and will help with the models.
+## Start building the models
+### Gradient Boosting Model
+
+A general purpose machine learning algorithm that can be used for both regression and classification problems.
+I could compare XGBoost to Gradient Boosting Model. It is a package in python that is an implementation of gradient boosting.
+
+### Random Forest Model
+
+### Support Vector Machine potentially.
+### Use A neural network (deep learning)
+A neural network would be useful in this scenario to predict the genre of a song based on the features of the song. The features are the predictors and the genre is the target. The neural network would be useful because it would be able to pick out the features that are the most important in predicting the genre of a song. This would be useful because it would allow the user to make sure that the features they are using are the most important in predicting the genre of a song. This would allow the user to make sure that they are using the most important features and not the ones that are not important. This would also allow the user to make sure that they are using the most important features and not the ones that are not important.
+
+## Evaluate the models
+Any of the metrics below could be worth looking at when scoring how well our models do when dealing with the data.
+* accuracy
+* precision
+* recall
+* f1 score
+* confusion matrix
+* ROC curve
+* AUC score
+
+---
+
+# Part 2. Genre Generation with DBSSCAN Clustering
+Remove Genres from the data and using DBSCAN to cluster the data and identify potential genres that are not named after traditional genres but are generated by the algorithm.
+
+# Components to this section of the project:
+* Remove the genres from the data
+* Use DBSCAN to cluster the data
+* Identify potential genres that are not named after traditional genres but are generated by the algorithm.

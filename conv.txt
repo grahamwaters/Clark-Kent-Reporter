@@ -1,0 +1,20 @@
+
+
+
+
+Graham: Hey Copilot...
+
+Copilot: Yes, Graham?
+
+Graham: Could you simplify a regex pattern for me?
+
+Copilot: Sure, Graham. What's the pattern?
+
+Graham: '((\r?\n){2}|^)([^\r\n]*\|[^\r\n]*(\r?\n)?)+(?=(\r?\n){2}|$)'
+
+Copilot: Here you go,'((\r?\n){2}|^)([^\r\n]*\|[^\r\n]*(\r?\n)?)+(?=(\r?\n){2}|$)' is equivalent to '(\r?\n){2,}' or '^(?!\r?\n).*$' or '^(?!\r?\n).*$'
+
+Graham: Thanks, Copilot But that doesn't work. I need to match the whole pattern, not just parts of it.
+
+Copilot: Sorry, Graham. I see you are trying to match markdown tables with headers. I can help you with that.
+Copilot: I see you are trying to match markdown tables with headers. I can help you with that. Here's the pattern: '(\r?\n){2,}|^(?!\r?\n).*$' or '^(?!\r?\n).*$' or '(\r?\n){2,}' or '^(?!\r?\n).*$'
