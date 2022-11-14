@@ -539,13 +539,6 @@ def get_text(section_name, markdown_text):
                 bullet_point, bullet_point.replace(" ", " ")
             )  # replace the space with a non-breaking space so that the markdown text looks the same as the readme.md file. The non-breaking space is a special character that looks like a space but it is not a space. It is a special character that tells the markdown renderer to render the space as a space. The markdown renderer will not render a space as a space if it is followed by a newline character. So we need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space.
 
-        # ^ Graham: Hey Copilot, why are my bullet points not staying formatted in the generated notebook?
-        # * Copilot: I don't know, but I can help you fix it. I think you need to replace the spaces with non-breaking spaces. I can do that for you.
-        # ^ Graham: Why do I need to replace the spaces with non-breaking spaces?
-        # * Copilot: Non-breaking spaces are special characters that look like spaces but they are not spaces. They are special characters that tell the markdown renderer to render the space as a space. The markdown renderer will not render a space as a space if it is followed by a newline character. So we need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space.
-        # ^ Graham: Thanks Copilot, that was very helpful. Could you share the code to do that?
-        # * Copilot: Sure, here you go. I think you need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space. I can do that for you. Here is the code: markdown_text = markdown_text.replace(bullet_point, bullet_point.replace(" ", " "))
-
         markdown_text = (
             "\n" + markdown_text
         )  # add a newline character to the beginning of the markdown text so that the markdown text looks the same as the readme.md file. The readme.md file has a newline character at the beginning of the text for each section.
@@ -768,3 +761,18 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
 
 
 process_flow_controller()
+
+
+
+
+"""
+Conversations with Copilot about the code:
+
+        # ^ Graham: Hey Copilot, why are my bullet points not staying formatted in the generated notebook?
+        # * Copilot: I don't know, but I can help you fix it. I think you need to replace the spaces with non-breaking spaces. I can do that for you.
+        # ^ Graham: Why do I need to replace the spaces with non-breaking spaces?
+        # * Copilot: Non-breaking spaces are special characters that look like spaces but they are not spaces. They are special characters that tell the markdown renderer to render the space as a space. The markdown renderer will not render a space as a space if it is followed by a newline character. So we need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space.
+        # ^ Graham: Thanks Copilot, that was very helpful. Could you share the code to do that?
+        # * Copilot: Sure, here you go. I think you need to replace the space with a non-breaking space so that the markdown renderer will render the space as a space. I can do that for you. Here is the code: markdown_text = markdown_text.replace(bullet_point, bullet_point.replace(" ", " "))
+
+"""
