@@ -2,12 +2,6 @@
 
 <!-- make a two column table with Part One on the left and Part Two on the right as headers -->
 
-```python
-test = "test"
-```
-
-
-
 | Part One | Part Two |
 |----------|----------|
 | [Part One](#part-one) | [Part Two](#part-two) |

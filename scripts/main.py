@@ -12,6 +12,9 @@ project_name = "my_project" # get this from the first <h1> tag in the readme.md 
 author = "Graham Waters"
 license_text = "MIT License"
 
+#functionality flags
+generate_python_script_flag = True # generate a python script from the code blocks in the readme.md file
+
 # read the config file
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -344,7 +347,7 @@ def get_code_block_from_text(text):
 
     return new_text_between_first_and_last_code_blocks
 
-
+#!deprecated
 def get_any_code_or_block(text):
     # just extract anything between ``` and ``` and return the list of paragraphs
     key_phrase = '```'
@@ -356,7 +359,16 @@ def get_any_code_or_block(text):
         text = text[end_index + 3:] # remove the code block from the text
     return code_blocks
 
-
+#^Testing
+def extract_python(markdown_text):
+    # pull out the code from the text
+    code_pattern = r'```python(.*?)```\n'
+    code_blocks = re.findall(code_pattern, markdown_text, re.DOTALL)
+    # remove the ```python and ``` from the code blocks while keeping the indendation and newlines
+    code_blocks = [re.sub(r'```python\n', '', code_block) for code_block in code_blocks]
+    code_blocks = [re.sub(r'\n```', '', code_block) for code_block in code_blocks]
+    code_string = '\n\n'.join(code_blocks)  # join the code blocks together with two newlines between each block of code
+    return code_string
 
 def get_text(section_name, markdown_text):
     """
@@ -388,6 +400,20 @@ def get_text(section_name, markdown_text):
         # we want to preserve the tables that we find and reproduce them in the report notebook as they are formatted in the readme.md file. Find any in this section and save it to the section text variable.
         # take the tables out of the markdown text and put them in a list, preserving the order of the tables in the markdown text
 
+        # if the cell contains code then return the code block instead of the text
+        # code_language_flags = ['```python','```c++','```c','```java','```javascript','```html','```css','```bash','```sql','```r','```swift','```go','```php','```ruby','```julia','```kotlin','```scala','```rust','```haskell','```perl','```lua','```matlab','```fortran','```cobol','```d','```dart','```groovy','```objectivec','```pascal','```powershell','```prolog','```racket','```scheme','```typescript','```verilog','```vhdl']
+
+        # if any(flag in markdown_text for flag in code_language_flags):
+        #     # get the code block from the markdown text
+        #     if markdown_text.count('```') == 2:
+        #         text_before_code = markdown_text.split('```')[0]
+        #         text_after_code = markdown_text.split('```')[-1]
+
+        #     code_block = get_code_block_from_text(markdown_text)
+        #     # return the code block
+        #     full_block = text_before_code + '\n\n' + code_block + '\n\n' + text_after_code
+
+        #     return full_block # this is a string of text
 
 
         # this list of tables should be a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
@@ -417,9 +443,6 @@ def get_text(section_name, markdown_text):
         # for table in tables:
         #     markdown_text.insert(table[1], table[0])
         # markdown_text = "\n".join(markdown_text) # join the markdown text back into a string
-
-        # check the lines between the section name line and the next section header line for any code blocks
-        # if there are any code blocks, add 2 \n to the beginning of the code block and 2 \n to the end of the code block. This will make the code block appear on a new line in the report notebook.
 
         # markdown_text = " ".join(markdown_text) # this is a string of text with the tables in it
         # step 4: get the text between those two lines while keeping the newlines in the text
@@ -678,8 +701,6 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
 
         # preserving code blocks
         # section_text = preserve_code(section_text) #note: the deprecated functions might work...  this could have been the issue.
-        found_blocks = get_any_code_or_block(section_text)
-        # found blocks should be a list of text blocks and code blocks
 
         section_text_cell = nbformat.v4.new_markdown_cell(section_text)
         print(
@@ -711,6 +732,26 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
         print("Report notebook path: " + report_path)
     with open(report_path, "w") as f:
         nbformat.write(report_notebook, f)
+
+
+    if generate_python_script_flag:
+        # save the python code to another file (a python script)
+        # if the file already exists, overwrite it, otherwise create a new file
+        # the python script will be saved in the same folder as the report notebook
+        report_path = os.getcwd() + f"/notebooks/{proj}_generated_report.py"
+        if os.path.exists(report_path):
+            os.remove(report_path)
+            print("Overwriting existing report notebook")
+            print("Report notebook path: " + report_path)
+
+        # get the python code from the notebook
+        python_code = extract_python(readme_text)
+        # write the python code to a file
+        with open(report_path, "w") as f:
+            f.write(python_code)
+
+
+
 
 
 process_flow_controller()
