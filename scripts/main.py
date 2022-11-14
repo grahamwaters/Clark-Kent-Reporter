@@ -6,6 +6,7 @@ import re
 import datetime as dt
 import configparser
 import numpy as np
+
 # user-defined variables
 project_name = "my_project" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
 author = "Graham Waters"
@@ -258,9 +259,102 @@ def get_special_blocks_from_text(text):
     # return the special block header text and the special block body text
     return special_block_text
 
+#!deprecated
+def preserve_code(md_text):
+    # format the code blocks in the markdown text so they look the same as they do in the readme.md file, in a jupyter notebook markdown cell. Do this by adding the ``` characters to the beginning and end of the code block. Also, the code blocks are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation. We want to reproduce any code blocks from the readme accurately in the destination notebook file so we need to add an extra new line before and after the code block. We also want to preserve the code blocks in the markdown text so we can use them in the destination notebook file.
+
+    # find the index of the first instance of a code block in the markdown text
+    first_code_block_index = md_text.find('```\n')
+    # find the index of the last instance of a code block in the markdown text
+    last_code_block_index = md_text.rfind('```\n')
+    # find the index of the first character after the last code block in the markdown text
+    first_char_after_last_code_block_index = last_code_block_index + 4
+
+    # get the text before the first code block
+    text_before_first_code_block = md_text[:first_code_block_index]
+    # get the text after the last code block
+    text_after_last_code_block = md_text[first_char_after_last_code_block_index:]
+
+    # get the text between the first and last code blocks
+    text_between_first_and_last_code_blocks = md_text[first_code_block_index:first_char_after_last_code_block_index]
+    # split the text between the first and last code blocks by the newline character
+    text_between_first_and_last_code_blocks_split = text_between_first_and_last_code_blocks.split('\n')
+    # remove the first and last elements from the list, which are the ``` characters
+    text_between_first_and_last_code_blocks_split = text_between_first_and_last_code_blocks_split[1:-1]
+
+    # create a new list to store the text that will be put into the notebook markdown cell
+    new_text_between_first_and_last_code_blocks_split = []
+
+    # iterate through the text between the first and last code blocks, splitting each line by the spaces at the beginning of the line
+    for line in text_between_first_and_last_code_blocks_split:
+        line_split = line.split('    ')
+        # if the line is indented by 4 spaces, add 2 spaces to the beginning of the line
+        if len(line_split) > 1:
+            new_text_between_first_and_last_code_blocks_split.append('  ' + line_split[1])
+        # if the line is indented by 2 spaces, add 2 spaces to the beginning of the line
+        elif len(line_split) == 1:
+            new_text_between_first_and_last_code_blocks_split.append('  ' + line_split[0])
+
+    # add the ``` characters to the beginning and end of the code block
+    new_text_between_first_and_last_code_blocks_split = ['```'] + new_text_between_first_and_last_code_blocks_split + ['```']
+
+    # join the list of lines in the code block with the newline character
+    new_text_between_first_and_last_code_blocks = '\n'.join(new_text_between_first_and_last_code_blocks_split)
+
+    # join the text before the first code block, the new text between the first and last code blocks, and the text after the last code block
+    new_md_text = text_before_first_code_block + new_text_between_first_and_last_code_blocks + text_after_last_code_block
+
+    return new_md_text
 
 
+#!deprecated
+def get_code_block_from_text(text):
+    # find the index of the first instance of a code block in the markdown text
+    first_code_block_index = text.find('```\n')
+    # find the index of the last instance of a code block in the markdown text
+    last_code_block_index = text.rfind('```\n')
+    # find the index of the first character after the last code block in the markdown text
+    first_char_after_last_code_block_index = last_code_block_index + 4
 
+    # get the text between the first and last code blocks
+    text_between_first_and_last_code_blocks = text[first_code_block_index:first_char_after_last_code_block_index]
+    # split the text between the first and last code blocks by the newline character
+    text_between_first_and_last_code_blocks_split = text_between_first_and_last_code_blocks.split('\n')
+    # remove the first and last elements from the list, which are the ``` characters
+    text_between_first_and_last_code_blocks_split = text_between_first_and_last_code_blocks_split[1:-1]
+
+    # create a new list to store the text that will be put into the notebook markdown cell
+    new_text_between_first_and_last_code_blocks_split = []
+
+    # iterate through the text between the first and last code blocks, splitting each line by the spaces at the beginning of the line
+    for line in text_between_first_and_last_code_blocks_split:
+        line_split = line.split('    ')
+        # if the line is indented by 4 spaces, add 2 spaces to the beginning of the line
+        if len(line_split) > 1:
+            new_text_between_first_and_last_code_blocks_split.append('  ' + line_split[1])
+        # if the line is indented by 2 spaces, add 2 spaces to the beginning of the line
+        elif len(line_split) == 1:
+            new_text_between_first_and_last_code_blocks_split.append('  ' + line_split[0])
+
+    # add the ``` characters to the beginning and end of the code block
+    new_text_between_first_and_last_code_blocks_split = ['```'] + new_text_between_first_and_last_code_blocks_split + ['```']
+
+    # join the list of lines in the code block with the newline character
+    new_text_between_first_and_last_code_blocks = '\n'.join(new_text_between_first_and_last_code_blocks_split)
+
+    return new_text_between_first_and_last_code_blocks
+
+
+def get_any_code_or_block(text):
+    # just extract anything between ``` and ``` and return the list of paragraphs
+    key_phrase = '```'
+    code_blocks = []
+    while key_phrase in text: # while there are still code blocks in the text
+        start_index = text.find(key_phrase) # find the index of the first instance of the key phrase
+        end_index = text.find(key_phrase, start_index + 1) # find the index of the second instance of the key phrase
+        code_blocks.append(text[start_index:end_index + 3]) # add the code block to the list of code blocks
+        text = text[end_index + 3:] # remove the code block from the text
+    return code_blocks
 
 
 
@@ -285,7 +379,6 @@ def get_text(section_name, markdown_text):
         markdown_text = remove_markdown_comments(markdown_text) # this function removes any commented code from the readme.md file
 
 
-
         # find the special blocks in the text and return them as a list of strings (each string is a special block of text)
         #!special_blocks = get_special_blocks_from_text(markdown_text)
         #!print("length of special blocks: ", len(special_blocks))
@@ -294,6 +387,8 @@ def get_text(section_name, markdown_text):
 
         # we want to preserve the tables that we find and reproduce them in the report notebook as they are formatted in the readme.md file. Find any in this section and save it to the section text variable.
         # take the tables out of the markdown text and put them in a list, preserving the order of the tables in the markdown text
+
+
 
         # this list of tables should be a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
         # the table location is the index of the table in the markdown text
@@ -322,6 +417,9 @@ def get_text(section_name, markdown_text):
         # for table in tables:
         #     markdown_text.insert(table[1], table[0])
         # markdown_text = "\n".join(markdown_text) # join the markdown text back into a string
+
+        # check the lines between the section name line and the next section header line for any code blocks
+        # if there are any code blocks, add 2 \n to the beginning of the code block and 2 \n to the end of the code block. This will make the code block appear on a new line in the report notebook.
 
         # markdown_text = " ".join(markdown_text) # this is a string of text with the tables in it
         # step 4: get the text between those two lines while keeping the newlines in the text
@@ -370,40 +468,13 @@ def get_text(section_name, markdown_text):
         for bullet_point in bullet_points:
             markdown_text = markdown_text.replace(bullet_point.strip(), bullet_point)
 
-        # also preserve the code blocks and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the ``` characters. Also, the code blocks are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation.
+        # code blocks
 
-        # code blocks could be any of the following:
-        # ```python
-        # code
-        # ```
-        # ```python (indented by 2 spaces)
-        # code
-        # ```
-        # etc.
 
-        # find these patterns in the markdown text
-        pattern_1 = r"\n[ ]{0,4}```.*?\n.*?\n[ ]{0,4}```" # this pattern finds the code blocks that are not indented by 2 spaces
-        pattern_2 = r"\n[ ]{2,4}```.*?\n.*?\n[ ]{2,4}```" # this pattern finds the code blocks that are indented by 2 spaces
 
-        if re.findall(pattern_1, markdown_text):
-            code_blocks = re.findall(pattern_1, markdown_text)
-        elif re.findall(pattern_2, markdown_text):
-            code_blocks = re.findall(pattern_2, markdown_text)
-        else:
-            code_blocks = []
 
-        if len(code_blocks) > 0:
-            # find the code blocks in the markdown text
 
-            # make sure there is a newline character at the end of the code block
-            code_blocks = [code_block + "\n\n" for code_block in code_blocks]
 
-            # replace the code blocks with the same code blocks, but with 4 spaces in front of them
-            code_blocks = [code_block.replace(code_block, "    " + code_block) for code_block in code_blocks]
-
-            # replace the code blocks in the markdown text with the new code blocks
-            for code_block in code_blocks:
-                markdown_text = markdown_text.replace(code_block.strip(), code_block) # the strip() function removes the newline character at the end of the code block so that it can be replaced with the new code block that has a newline character at the end of it (the new code block is the same as the old code block, but with 4 spaces in front of it)
 
         # also preserve the images and make them look the same in the markdown text as they do in the readme.md file. We want to make sure the markdown text looks the same as the readme.md file. This includes the ![]() characters. Also, the images are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation.
 
@@ -604,6 +675,11 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
         # create a markdown cell with the text from the readme.md file for that section
 
         section_text = get_text(section_name, readme_text)
+
+        # preserving code blocks
+        # section_text = preserve_code(section_text) #note: the deprecated functions might work...  this could have been the issue.
+        found_blocks = get_any_code_or_block(section_text)
+        # found blocks should be a list of text blocks and code blocks
 
         section_text_cell = nbformat.v4.new_markdown_cell(section_text)
         print(

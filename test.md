@@ -2,7 +2,11 @@
 
 <!-- make a two column table with Part One on the left and Part Two on the right as headers -->
 
+
+
 ```python
+
+
 test = "test"
 ```
 
@@ -231,7 +235,11 @@ Check for the trends in the data to see the correlations, skewness and kurtosis 
 ### Loading The Data from the Files
 Using pandas to load the data from the files into dataframes.
 
+
+
 ```python
+
+
 # import the data from the csv files into pandas dataframes (data/SpotGenTrack)
 df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')
 df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')
