@@ -16,7 +16,9 @@ license_text = "MIT License"
 generate_python_script_flag = (
     True  # generate a python script from the code blocks in the readme.md file
 )
-
+execute_in_background_flag = (
+    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path
+)
 # read the config file
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -200,7 +202,7 @@ def parse_table_of_contents(readme_text):
     return table_of_contents
 
 
-def startup():
+def startup(path=path):
     global readme_text
     # read the readme.md file
     with open(path, "r") as f:
@@ -210,17 +212,6 @@ def startup():
     table_of_contents = parse_table_of_contents(readme_text)
     return table_of_contents, readme_text
 
-
-def process_flow_controller():
-    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.
-    global project_name
-    (
-        table_of_contents,
-        readme_text,
-    ) = startup()  # read the readme.md file and parse the table of contents
-
-    # using the table of contents, create the sections of the report notebook
-    generate_report_notebook(project_name, table_of_contents, readme_text)
 
 
 def create_data_section(report_notebook):
@@ -743,6 +734,13 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
     with open(report_path, "w") as f:
         nbformat.write(report_notebook, f)
 
+
+def generate_report_py_file():
+    proj = str(project_name.replace(" ", "_").lower().strip())
+    first_line_break = proj.find("\n")  # get the index of the first line break
+    proj = "".join([char for char in proj[:first_line_break] if char.isalnum()])
+    proj = proj[:40]
+    report_path = os.getcwd() + f"/notebooks/{proj}_generated_report.ipynb"
     if generate_python_script_flag:
         # save the python code to another file (a python script)
         # if the file already exists, overwrite it, otherwise create a new file
@@ -760,8 +758,102 @@ def generate_report_notebook(project_name, table_of_contents, readme_text):
             f.write(python_code)
 
 
-process_flow_controller()
 
+def process_flow_controller(readme_path=path,py_path=scripts_path,ipynb_path=notebooks_path):
+    """
+    process_flow_controller takes a string of text and returns a list of tuples
+
+    _extended_summary_
+
+    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path
+    :type readme_path: str, optional
+    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path
+    :type py_path: str, optional
+    :param ipynb_path: a string of text that is the path to the notebooks folder, defaults to notebooks_path
+    :type ipynb_path: str, optional
+    """
+    # from start to finish, examine the readme and end with a populated, fully functional report jupyter notebook that can be tweaked and then presented to the end-user as the final report.
+    global project_name
+    (
+        table_of_contents,
+        readme_text,
+    ) = startup()  # read the readme.md file and parse the table of contents
+
+    # using the table of contents, create the sections of the report notebook
+    generate_report_notebook(project_name, table_of_contents, readme_text)
+
+def background_process_flow(readme_path=None,py_path=None):
+    # what is the purpose of this function?
+    # this function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.
+    """
+    background_process_flow takes a string of text and returns a list of tuples. This function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.
+
+    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path
+    :type readme_path: str, optional
+    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path
+    :type py_path: str, optional
+    """
+    global project_name
+    (
+        table_of_contents,
+        readme_text,
+    ) = startup()  # read the readme.md file and parse the table of contents
+
+    # we are now going to extract the python code from the readme.md file and save it to a python script
+    # the python script will be saved in the same folder as the report notebook
+
+    # we will be using the function extract_python(readme_text)
+    # this function will take the readme_text and extract the python code from it
+    # the python code will be saved to a python script
+    # the script is to be saved at the destination py_path (the path provided by the user in this function)
+    # the script is to be named project_name_generated_report.py
+    # if the file already exists, overwrite it, otherwise create a new file
+
+    # flow
+    # 1. extract the python code from the readme.md file
+    # 2. save the python code to a python script
+    # 3. save the python script to the destination py_path
+    # 4. name the python script project_name_generated_report.py
+    # 5. if the file already exists, overwrite it, otherwise create a new file
+
+    # code
+    readme_text_content = readme_text
+    python_code = extract_python(readme_text_content)
+    # save the python code to another file (a python script)
+    # if the file already exists, overwrite it, otherwise create a new file
+    # the python script will be saved in the same folder as the report notebook
+    proj = str(project_name.replace(" ", "_").lower().strip())
+    first_line_break = proj.find("\n")  # get the index of the first line break
+    proj = "".join([char for char in proj[:first_line_break] if char.isalnum()])
+    proj = proj[:40]
+    script_path = py_path # the path to the scripts file is provided by the user
+    # save the python script to the destination py_path
+    script_path = py_path + f"/{proj}_python_code.py"
+    if os.path.exists(script_path):
+        os.remove(script_path)
+        print("rewriting existing python script")
+        print("python script path: " + script_path)
+    with open(script_path, "w") as f:
+        f.write(python_code)
+
+
+    # write the python code to a file
+
+    return
+
+import time
+#^ Run the .py generation in the background so that the user can continue to use the notebook while the report is being generated or updated in the background.
+if execute_in_background_flag:
+    absolute_path_to_readme = '/Volumes/Backups of Grahams IMAC/PythonProjects/spotify_analysis/README.md' #note: could be dynamically generated from the user's input
+    absolute_path_to_pyfilefolder = '/Volumes/Backups of Grahams IMAC/PythonProjects/spotify_analysis/scripts' #note: could be dynamically generated from the user's input
+
+    while True: # until user stops the process
+        print('running background process')
+        background_process_flow(absolute_path_to_readme,absolute_path_to_pyfilefolder)
+        print("sleeping for 5 minutes")
+        time.sleep(300)
+else:
+    process_flow_controller() # run with the default settings
 
 
 

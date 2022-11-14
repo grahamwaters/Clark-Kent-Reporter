@@ -233,6 +233,44 @@ df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')
 # FeaturesExtracted from the audio files
 df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')
 df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')
+
+# print the columns for each data file to see what data is available
+print(f'\ncolumns in the albums file: ',df_albums.columns)
+print(f'\ncolumns in the artists file: ',df_artists.columns)
+print(f'\ncolumns in the tracks file: ',df_tracks.columns)
+print(f'\ncolumns in the features file: ',df_features.columns)
+print(f'\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)
+```
+
+```output
+columns in the albums file:  Index(['Unnamed: 0', 'album_type', 'artist_id', 'available_markets',
+       'external_urls', 'href', 'id', 'images', 'name', 'release_date',
+       'release_date_precision', 'total_tracks', 'track_id', 'track_name_prev',
+       'uri', 'type'],
+      dtype='object')
+
+columns in the artists file:  Index(['Unnamed: 0', 'artist_popularity', 'followers', 'genres', 'id', 'name',
+       'track_id', 'track_name_prev', 'type'],
+      dtype='object')
+
+columns in the tracks file:  Index(['Unnamed: 0', 'acousticness', 'album_id', 'analysis_url', 'artists_id',
+       'available_markets', 'country', 'danceability', 'disc_number',
+       'duration_ms', 'energy', 'href', 'id', 'instrumentalness', 'key',
+       'liveness', 'loudness', 'lyrics', 'mode', 'name', 'playlist',
+       'popularity', 'preview_url', 'speechiness', 'tempo', 'time_signature',
+       'track_href', 'track_name_prev', 'track_number', 'uri', 'valence',
+       'type'],
+      dtype='object')
+
+columns in the features file:  Index(['Unnamed: 0', 'mean_syllables_word', 'mean_words_sentence',
+       'n_sentences', 'n_words', 'sentence_similarity', 'track_id',
+       'vocabulary_wealth'],
+      dtype='object')
+...
+       'Tonnetz_4', 'Tonnetz_5', 'Tonnetz_6', 'ZCR', 'entropy_energy',
+       'spectral_bandwith', 'spectral_centroid', 'spectral_rollOff_max',
+       'spectral_rollOff_min', 'track_id'],
+      dtype='object', length=209)
 ```
 
 
@@ -241,7 +279,20 @@ df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_au
 
 
 
+
+
+
 ### What are the most popular genres?
+
+```python
+# get the counts of each genre
+genre_counts = df_tracks['playlist'].value_counts()
+
+
+
+```
+
+
 
 ### What are the most popular artists?
 
