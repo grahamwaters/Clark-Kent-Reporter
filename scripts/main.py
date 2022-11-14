@@ -850,8 +850,8 @@ if execute_in_background_flag:
     while True: # until user stops the process
         print('running background process')
         background_process_flow(absolute_path_to_readme,absolute_path_to_pyfilefolder)
-        print("sleeping for 10 minutes")
-        time.sleep(600)
+        print("sleeping for 5 minutes")
+        time.sleep(300)
 else:
     process_flow_controller() # run with the default settings
 
