@@ -63,6 +63,51 @@
         "documentation": {}
     },
     {
+        "label": "df_albums",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
+        "label": "df_artists",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
+        "label": "df_tracks",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
+        "label": "df_features",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
+        "label": "df_lowlevelaudio",
+        "kind": 5,
+        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')",
+        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
+        "documentation": {}
+    },
+    {
         "label": "remove_markdown_comments",
         "kind": 2,
         "importPath": "scripts.main",
@@ -121,7 +166,16 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.\n    header_pattern = r'\\n\\|\\s'\n    #\n    # Now... for the special block body text...\n    # if you see a \\n followed by a | character you are in a new row of a table and you need to keep capturing text\n    body_pattern = r'\\n\\|(.*?)\\|\\n\\n'\n    # keep going until you see text followed by a | character followed by a \\n character followed by a \\n character and then stop. The text between where you started and where you stopped is the special block body text.\n    #end_pattern = r'\\|\\n\\n'",
+        "peekOfCode": "def get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.\n    header_pattern = r\"\\n\\|\\s\"\n    #\n    # Now... for the special block body text...\n    # if you see a \\n followed by a | character you are in a new row of a table and you need to keep capturing text\n    body_pattern = r\"\\n\\|(.*?)\\|\\n\\n\"\n    # keep going until you see text followed by a | character followed by a \\n character followed by a \\n character and then stop. The text between where you started and where you stopped is the special block body text.\n    # end_pattern = r'\\|\\n\\n'",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "extract_python",
+        "kind": 2,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "def extract_python(markdown_text):\n    # pull out the code from the text\n    code_pattern = r\"```python(.*?)```\\n\"\n    code_blocks = re.findall(code_pattern, markdown_text, re.DOTALL)\n    # remove the ```python and ``` from the code blocks while keeping the indendation and newlines\n    code_blocks = [re.sub(r\"```python\\n\", \"\", code_block) for code_block in code_blocks]\n    code_blocks = [re.sub(r\"\\n```\", \"\", code_block) for code_block in code_blocks]\n    code_string = \"\\n\\n\".join(\n        code_blocks\n    )  # join the code blocks together with two newlines between each block of code",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -157,7 +211,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "project_name = \"my_project\" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -166,7 +220,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -175,7 +229,16 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "license_text = \"MIT License\"\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)",
+        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]",
+        "detail": "scripts.main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_python_script_flag",
+        "kind": 5,
+        "importPath": "scripts.main",
+        "description": "scripts.main",
+        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -202,7 +265,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "scripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty",
+        "peekOfCode": "scripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -211,7 +274,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "notebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)",
+        "peekOfCode": "notebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -220,7 +283,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "date = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning",
+        "peekOfCode": "date = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -229,7 +292,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "readme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning\n# 5. Data Exploration\n# 6. Data Analysis",
+        "peekOfCode": "readme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning\n# 5. Data Exploration\n# 6. Data Analysis",
         "detail": "scripts.main",
         "documentation": {}
     }
