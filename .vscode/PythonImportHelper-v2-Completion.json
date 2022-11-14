@@ -72,114 +72,6 @@
         "documentation": {}
     },
     {
-        "label": "df_albums",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "df_artists",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "df_tracks",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "df_features",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "df_lowlevelaudio",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "genre_counts",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "peekOfCode": "genre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report copy",
-        "documentation": {}
-    },
-    {
-        "label": "df_albums",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_albums = pd.read_csv('data/SpotGenTrack/DataSources/spotify_albums.csv')\ndf_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
-        "label": "df_artists",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_artists = pd.read_csv('data/SpotGenTrack/DataSources/spotify_artists.csv')\ndf_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
-        "label": "df_tracks",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_tracks = pd.read_csv('data/SpotGenTrack/DataSources/spotify_tracks.csv')\n# FeaturesExtracted from the audio files\ndf_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
-        "label": "df_features",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_features = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/lyrics_features.csv')\ndf_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
-        "label": "df_lowlevelaudio",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "df_lowlevelaudio = pd.read_csv('data/SpotGenTrack/FeaturesExtracted/low_level_audio_features.csv')\n# print the columns for each data file to see what data is available\nprint(f'\\ncolumns in the albums file: ',df_albums.columns)\nprint(f'\\ncolumns in the artists file: ',df_artists.columns)\nprint(f'\\ncolumns in the tracks file: ',df_tracks.columns)\nprint(f'\\ncolumns in the features file: ',df_features.columns)\nprint(f'\\ncolumns in the lowlevelaudio file: ',df_lowlevelaudio.columns)\n# get the counts of each genre\ngenre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
-        "label": "genre_counts",
-        "kind": 5,
-        "importPath": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "description": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "peekOfCode": "genre_counts = df_tracks['playlist'].value_counts()",
-        "detail": "notebooks.analysisofspotifytrackswithneuralnetwork_generated_report",
-        "documentation": {}
-    },
-    {
         "label": "remove_markdown_comments",
         "kind": 2,
         "importPath": "scripts.main",
@@ -301,7 +193,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)",
+        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -310,7 +202,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -319,7 +211,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()",
+        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -328,7 +220,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
+        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -337,7 +229,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "execute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "peekOfCode": "execute_in_background_flag = (\n    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },

@@ -12,6 +12,7 @@
 - [Table of Contents](#table-of-contents)
 - [Executive Summary](#executive-summary)
 - [Part 1: Using Clustering on Spotify data to predict genres of songs](#part-1-using-clustering-on-spotify-data-to-predict-genres-of-songs)
+- [Libraries we will use in this study](#libraries-we-will-use-in-this-study)
 - [What Data is available in our datasets?](#what-data-is-available-in-our-datasets)
   - [Data Dictionary](#data-dictionary)
     - [File 1. data_by_genres.csv](#file-1-data_by_genrescsv)
@@ -26,8 +27,11 @@
     - [Loading The Data from the Files](#loading-the-data-from-the-files)
     - [What are the most popular genres?](#what-are-the-most-popular-genres)
     - [What are the most popular artists?](#what-are-the-most-popular-artists)
+    - [What are the most popular tracks?](#what-are-the-most-popular-tracks)
+    - [What are the most popular albums?](#what-are-the-most-popular-albums)
+    - [What are the most popular countries?](#what-are-the-most-popular-countries)
     - [What correlations are there between the features?](#what-correlations-are-there-between-the-features)
-    - [What does the distribution of the features look like?](#what-does-the-distribution-of-the-features-look-like)
+    - [What are the distributions of the features?](#what-are-the-distributions-of-the-features)
     - [How do each of the features relate to the target (genre)?](#how-do-each-of-the-features-relate-to-the-target-genre)
   - [Data Preprocessing](#data-preprocessing)
     - [Missing data](#missing-data)
@@ -49,6 +53,35 @@ This project is a continuation of the previous project, which was a classificati
 
 # Part 1: Using Clustering on Spotify data to predict genres of songs
 We have a labeled dataset of spotify songs that have been labeled with a genre. In the first part of this project we want to use the features of the songs to predict the genre. We will use several methods, culminating in the use of a neural network to predict the genre.
+
+# Libraries we will use in this study
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as stats
+import sklearn
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import plot_confusion_matrix
+from sklearn import svm
+from sklearn.cluster import DBSCAN
+
+# for neural networks
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.layers.experimental import preprocessing
+
+```
 
 # What Data is available in our datasets?
 
@@ -273,32 +306,64 @@ columns in the features file:  Index(['Unnamed: 0', 'mean_syllables_word', 'mean
       dtype='object', length=209)
 ```
 
-
-
-
-
-
-
-
-
-
 ### What are the most popular genres?
 
 ```python
 # get the counts of each genre
 genre_counts = df_tracks['playlist'].value_counts()
+```
+### What are the most popular artists?
 
+```python
+# get the counts of each artist
+artist_counts = df_tracks['artists_id'].value_counts()
+```
 
+### What are the most popular tracks?
 
+```python
+# get the counts of each track
+track_counts = df_tracks['id'].value_counts()
+```
+
+### What are the most popular albums?
+
+```python
+# get the counts of each album
+album_counts = df_tracks['album_id'].value_counts()
+```
+
+### What are the most popular countries?
+
+```python
+# get the counts of each country
+country_counts = df_tracks['country'].value_counts()
 ```
 
 
 
-### What are the most popular artists?
-
 ### What correlations are there between the features?
 
-### What does the distribution of the features look like?
+To find the correlations we will likely want to use a test for multicollinearity to see if there are any features that are highly correlated with each other. If there are, we will want to remove one of the features from the model.
+
+
+```python
+# Testing for multicollinearity
+# create a correlation matrix
+corr_matrix = df_tracks.corr() # .corr is used to find corelation
+# plot the correlation matrix
+plt.figure(figsize=(20,20))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+plt.show()
+```
+
+### What are the distributions of the features?
+
+```python
+# plot the distributions of the features
+df_tracks.hist(figsize=(20,20))
+plt.show()
+```
 
 ### How do each of the features relate to the target (genre)?
 

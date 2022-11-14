@@ -17,7 +17,7 @@ generate_python_script_flag = (
     True  # generate a python script from the code blocks in the readme.md file
 )
 execute_in_background_flag = (
-    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path
+    False # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path
 )
 # read the config file
 config = configparser.ConfigParser()
@@ -844,8 +844,8 @@ def background_process_flow(readme_path=None,py_path=None):
 import time
 #^ Run the .py generation in the background so that the user can continue to use the notebook while the report is being generated or updated in the background.
 if execute_in_background_flag:
-    absolute_path_to_readme = '/Volumes/Backups of Grahams IMAC/PythonProjects/spotify_analysis/README.md' #note: could be dynamically generated from the user's input
-    absolute_path_to_pyfilefolder = '/Volumes/Backups of Grahams IMAC/PythonProjects/spotify_analysis/scripts' #note: could be dynamically generated from the user's input
+    absolute_path_to_readme = '//Volumes/Backups of Grahams IMAC/PythonProjects/GenreIdentity/README.md' #note: could be dynamically generated from the user's input
+    absolute_path_to_pyfilefolder = '/Volumes/Backups of Grahams IMAC/PythonProjects/GenreIdentity/scripts' #note: could be dynamically generated from the user's input
 
     while True: # until user stops the process
         print('running background process')
