@@ -285,10 +285,11 @@ def get_text(section_name, markdown_text):
         markdown_text = remove_markdown_comments(markdown_text) # this function removes any commented code from the readme.md file
 
 
+
         # find the special blocks in the text and return them as a list of strings (each string is a special block of text)
-        special_blocks = get_special_blocks_from_text(markdown_text)
-        print("length of special blocks: ", len(special_blocks))
-        print("special blocks: ", special_blocks)
+        #!special_blocks = get_special_blocks_from_text(markdown_text)
+        #!print("length of special blocks: ", len(special_blocks))
+        #!print("special blocks: ", special_blocks)
 
 
         # we want to preserve the tables that we find and reproduce them in the report notebook as they are formatted in the readme.md file. Find any in this section and save it to the section text variable.
@@ -297,10 +298,10 @@ def get_text(section_name, markdown_text):
         # this list of tables should be a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
         # the table location is the index of the table in the markdown text
         # the table text is the text of the table in the markdown text
-        tables = re.findall(table_pattern, markdown_text) # this is a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
+        # tables = re.findall(table_pattern, markdown_text) # this is a list of tuples, each tuple is a table and the first element of the tuple is the table text and the second element is the table location in the markdown text
 
-        # remove the tables from the markdown text
-        markdown_text = re.sub(table_pattern, "", markdown_text)
+        # # remove the tables from the markdown text
+        # markdown_text = re.sub(table_pattern, "", markdown_text)
 
         # step 1: find the line that starts with the section name
         pattern = r"^" + section_name + r".*?$" # the ^ symbol means the start of the line, the $ symbol means the end of the line, the .*? means any number of any characters
@@ -451,6 +452,11 @@ def get_text(section_name, markdown_text):
     except Exception as e:
         markdown_text = "\n\nSection Text Not Found\n\n"
         print(e)
+
+
+    # the tables have this  | |  in them replace with  |\n|
+    markdown_text = markdown_text.replace('| |', '|\n|')
+
     return markdown_text
 
 
