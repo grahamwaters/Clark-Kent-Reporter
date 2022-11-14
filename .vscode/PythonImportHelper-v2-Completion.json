@@ -166,34 +166,7 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.\n    header_pattern = r'\\n\\|\\s'\n    #\n    # Now... for the special block body text...\n    # if you see a \\n followed by a | character you are in a new row of a table and you need to keep capturing text\n    body_pattern = r'\\n\\|(.*?)\\|\\n\\n'\n    # keep going until you see text followed by a | character followed by a \\n character followed by a \\n character and then stop. The text between where you started and where you stopped is the special block body text.\n    #end_pattern = r'\\|\\n\\n'",
-        "detail": "scripts.main",
-        "documentation": {}
-    },
-    {
-        "label": "preserve_code",
-        "kind": 2,
-        "importPath": "scripts.main",
-        "description": "scripts.main",
-        "peekOfCode": "def preserve_code(md_text):\n    # format the code blocks in the markdown text so they look the same as they do in the readme.md file, in a jupyter notebook markdown cell. Do this by adding the ``` characters to the beginning and end of the code block. Also, the code blocks are indented by 4 spaces, and could be indented by 2 spaces. We want to preserve that indentation. We want to reproduce any code blocks from the readme accurately in the destination notebook file so we need to add an extra new line before and after the code block. We also want to preserve the code blocks in the markdown text so we can use them in the destination notebook file.\n    # find the index of the first instance of a code block in the markdown text\n    first_code_block_index = md_text.find('```\\n')\n    # find the index of the last instance of a code block in the markdown text\n    last_code_block_index = md_text.rfind('```\\n')\n    # find the index of the first character after the last code block in the markdown text\n    first_char_after_last_code_block_index = last_code_block_index + 4\n    # get the text before the first code block\n    text_before_first_code_block = md_text[:first_code_block_index]",
-        "detail": "scripts.main",
-        "documentation": {}
-    },
-    {
-        "label": "get_code_block_from_text",
-        "kind": 2,
-        "importPath": "scripts.main",
-        "description": "scripts.main",
-        "peekOfCode": "def get_code_block_from_text(text):\n    # find the index of the first instance of a code block in the markdown text\n    first_code_block_index = text.find('```\\n')\n    # find the index of the last instance of a code block in the markdown text\n    last_code_block_index = text.rfind('```\\n')\n    # find the index of the first character after the last code block in the markdown text\n    first_char_after_last_code_block_index = last_code_block_index + 4\n    # get the text between the first and last code blocks\n    text_between_first_and_last_code_blocks = text[first_code_block_index:first_char_after_last_code_block_index]\n    # split the text between the first and last code blocks by the newline character",
-        "detail": "scripts.main",
-        "documentation": {}
-    },
-    {
-        "label": "get_any_code_or_block",
-        "kind": 2,
-        "importPath": "scripts.main",
-        "description": "scripts.main",
-        "peekOfCode": "def get_any_code_or_block(text):\n    # just extract anything between ``` and ``` and return the list of paragraphs\n    key_phrase = '```'\n    code_blocks = []\n    while key_phrase in text: # while there are still code blocks in the text\n        start_index = text.find(key_phrase) # find the index of the first instance of the key phrase\n        end_index = text.find(key_phrase, start_index + 1) # find the index of the second instance of the key phrase\n        code_blocks.append(text[start_index:end_index + 3]) # add the code block to the list of code blocks\n        text = text[end_index + 3:] # remove the code block from the text\n    return code_blocks",
+        "peekOfCode": "def get_special_blocks_from_text(text):\n    # if you see a \\n followed by a | character followed by a space, then you are in a special block header and you should start a new special block\n    # watch for the next \\n character and stop when you see it. The text between where you started and where you stopped is the special block header text.\n    header_pattern = r\"\\n\\|\\s\"\n    #\n    # Now... for the special block body text...\n    # if you see a \\n followed by a | character you are in a new row of a table and you need to keep capturing text\n    body_pattern = r\"\\n\\|(.*?)\\|\\n\\n\"\n    # keep going until you see text followed by a | character followed by a \\n character followed by a \\n character and then stop. The text between where you started and where you stopped is the special block body text.\n    # end_pattern = r'\\|\\n\\n'",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -202,7 +175,7 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def extract_python(markdown_text):\n    # pull out the code from the text\n    code_pattern = r'```python(.*?)```\\n'\n    code_blocks = re.findall(code_pattern, markdown_text, re.DOTALL)\n    # remove the ```python and ``` from the code blocks while keeping the indendation and newlines\n    code_blocks = [re.sub(r'```python\\n', '', code_block) for code_block in code_blocks]\n    code_blocks = [re.sub(r'\\n```', '', code_block) for code_block in code_blocks]\n    code_string = '\\n\\n'.join(code_blocks)  # join the code blocks together with two newlines between each block of code\n    return code_string\ndef get_text(section_name, markdown_text):",
+        "peekOfCode": "def extract_python(markdown_text):\n    # pull out the code from the text\n    code_pattern = r\"```python(.*?)```\\n\"\n    code_blocks = re.findall(code_pattern, markdown_text, re.DOTALL)\n    # remove the ```python and ``` from the code blocks while keeping the indendation and newlines\n    code_blocks = [re.sub(r\"```python\\n\", \"\", code_block) for code_block in code_blocks]\n    code_blocks = [re.sub(r\"\\n```\", \"\", code_block) for code_block in code_blocks]\n    code_string = \"\\n\\n\".join(\n        code_blocks\n    )  # join the code blocks together with two newlines between each block of code",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -238,7 +211,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "project_name = \"my_project\" # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n#functionality flags\ngenerate_python_script_flag = True # generate a python script from the code blocks in the readme.md file\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]",
+        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -247,7 +220,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n#functionality flags\ngenerate_python_script_flag = True # generate a python script from the code blocks in the readme.md file\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -256,7 +229,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "license_text = \"MIT License\"\n#functionality flags\ngenerate_python_script_flag = True # generate a python script from the code blocks in the readme.md file\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -265,7 +238,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "generate_python_script_flag = True # generate a python script from the code blocks in the readme.md file\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)",
+        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -292,7 +265,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "scripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty",
+        "peekOfCode": "scripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -301,7 +274,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "notebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)",
+        "peekOfCode": "notebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)\nprint(scripts_path)\nprint(notebooks_path)\n# Global Variables\ndate = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -310,7 +283,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "date = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning",
+        "peekOfCode": "date = dt.datetime.now().strftime(\"%Y-%m-%d\")\n# set the readme text to blank\nreadme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -319,7 +292,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "readme_text = \"\" # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning\n# 5. Data Exploration\n# 6. Data Analysis",
+        "peekOfCode": "readme_text = \"\"  # initially the file is empty\n# read a readme.md file and make a report jupyter notebook that has the appropriate sections (from the table of contents in the readme.md file)\n# What are the expected sections in a data science report notebook?\n# The answer is:\n# 1. Introduction\n# 2. Table of Contents\n# 3. Data\n# 4. Data Cleaning\n# 5. Data Exploration\n# 6. Data Analysis",
         "detail": "scripts.main",
         "documentation": {}
     }
