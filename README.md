@@ -103,25 +103,9 @@ I can use this this tool to generate my overview notebook for the project as fol
 2. Then I paste the text into the `MOCKUP_README.md` file in the `root` directory of this repository.
 3. Then I open [Clark Kent Reporter](scripts/main.py) in Visual Studio Code and run the script.
 4. The `destination` and `source` files are set in the `main.py` file. You can change them to whatever you want.
-
-
-
-
-
-
+5. The script will generate a notebook file in the `destination` directory. In this case, it will be in the `notebooks` directory. The file will be named `generated_notebook.ipynb`. If this is not the case for you, please open an issue and I will look into it.
 # License
-This project is licensed under the MIT License - see the LICENSE.md file for details
-
-
-
-
-
-
-
-
-
-
-
+This project is licensed under the MIT License - see the `LICENSE.md` file for details
 # Acknowledgments
 I would like to thank the following people for their support and guidance:
 1. Superman - for being the inspiration for this project.
