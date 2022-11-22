@@ -1,6 +1,7 @@
-# Clark Kent Reporter
-## A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.
+# The Clark Kent Reporter
+<!-- ## A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers. -->
 
+A mild-mannered reporter with hidden superpowers for your data science projects.
 ---
 
 ![header](images/header.gif)
@@ -22,28 +23,29 @@
 
 # Table of Contents
 
-- [Clark Kent Reporter](#clark-kent-reporter)
-  - [A Mild Mannered-Reporter for your Data Science Projects with hidden superpowers.](#a-mild-mannered-reporter-for-your-data-science-projects-with-hidden-superpowers)
+- [The Clark Kent Reporter](#the-clark-kent-reporter)
+  - [A mild-mannered reporter with hidden superpowers for your data science projects.](#a-mild-mannered-reporter-with-hidden-superpowers-for-your-data-science-projects)
 - [Table of Contents](#table-of-contents)
-- [Automatic Report Generator For Avid ReadMe Writers](#automatic-report-generator-for-avid-readme-writers)
-- [What does Clark Kent Reporter do?](#what-does-clark-kent-reporter-do)
+- [Automatic Report Generation with Clark Kent Reporter](#automatic-report-generation-with-clark-kent-reporter)
+- [What does The Clark Kent Reporter do?](#what-does-the-clark-kent-reporter-do)
 - [How to Get Clark Running](#how-to-get-clark-running)
-- [Example Use Case](#example-use-case)
-- [Basic Steps to Generate a Report Notebook](#basic-steps-to-generate-a-report-notebook)
 - [Installation](#installation)
 - [Contributing](#contributing)
+- [Example Use Case](#example-use-case)
+  - [The Files](#the-files)
+  - [The Steps](#the-steps)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
 
-# Automatic Report Generator For Avid ReadMe Writers
-**Version 1.0.0**
+# Automatic Report Generation with Clark Kent Reporter
+**Latest Version: 1.0.0**
 
 **Created by Graham Waters**
 
-# What does Clark Kent Reporter do?
+# What does The Clark Kent Reporter do?
 
-This tool converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. If you've ever been under a time constraint and needed to generate a report quickly in Jupyter Notebook format but found that you wrote most of your analysis in a markdown file, then you just found the solution to our mutual dilemma.
+<!-- This tool converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. If you've ever been under a time constraint and needed to generate a report quickly in Jupyter Notebook format but found that you wrote most of your analysis in a markdown file, then you just found the solution to our mutual dilemma.
 
 This project is currently being developed in my free time, and any pull requests will be reviewed as soon as I can. There are some areas where it could be beefed up and made more robust and dynamic. I welcome your input.
 
@@ -51,7 +53,9 @@ The code has been written with Python 3.9.6 and developed in Visual Studio Code.
 
 Finally, It's worth noting that this software doesn't magically transform your work from a document to a presentation, which will still require the careful work that data scientists and analysts are known for. However, it does make sure you don't have to start from scratch when making an interactive and working notebook out of something that would otherwise take hours manually write everything out again. The idea came about when I was parsing my old repositories for what I wanted to include in my official portfolio. I realized how many readmes I would be reading if I did it the old-fashioned way. I decided to standardize what a data science notebook should look like, and once that was done, it was pretty simple to move forward. After a while, I decided to do away with the manual process and let this little tool automate the whole thing, well, at least most of the grunt work.
 I hope this brings you as much joy as it does me!
-Happy Coding!
+Happy Coding! -->
+
+This tool converts a traditionally formatted overview (in a readme file) into a populated Jupyter Notebook for data science presentations or findings presentations. It doesn't magically transform your work from a document to a presentation, which will still require the careful work that data scientists and analysts are known for. However, it does make sure you don't have to start from scratch when making an interactive and working notebook out of something that would otherwise take hours manually write everything out again. I realized how many readmes I would be reading if I did it the old-fashioned way.
 
 ![separator](images/sep_1.gif)
 
@@ -73,37 +77,6 @@ pip3 install -r requirements.txt
 You should be good to go!
 
 ![separator](images/sep_1.gif)
-# Example Use Case
-Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
-I can use this this tool to generate my overview notebook for the project as follows:
-
-```python
-import clark_kent_reporter as super_man
-# Point to the readme file that you want to convert
-readme_file = "README.md" # path to the readme file (absolute path).
-# Point to the notebook file that you want to generate
-notebook_file = "./reports/auto_report.ipynb" # path to the notebook file (relative path).
-```
-What we have so far is a set of locations one with the markdown that we want to convert, and the other with the notebook that we want to generate. Now we can use the following code to generate the notebook:
-
-```python
-$ python -m clark_kent_reporter -r README.md -n ./reports/auto_report.ipynb
-# note: this is untested. The best way is to run the script within the cloned repository.
-```
-
-# Basic Steps to Generate a Report Notebook
-* Step One: Paste the Readme File into `MOCKUP_README.md` and save it in the root directory of the project.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -115,10 +88,39 @@ $ python -m clark_kent_reporter -r README.md -n ./reports/auto_report.ipynb
 Until we are listed on PyPi you can clone the repo and install locally. I will update this section once we are listed on PyPi.
 
 # Contributing
-If you would like to contribute to this project, please feel free to fork the repository and submit a pull request. I will review the pull request as soon as I can. If you have any questions, please feel free to contact me at
+If you would like to contribute to this project, please feel free to fork the repository and submit a pull request. I will review the pull request as soon as I can. We welcome any and all contributions as this is a growing tool.
+
+# Example Use Case
+Let's say I have a project that generates lorebooks for NovelAI [project](https://github.com/grahamwaters/lorebook_generator_for_novelai)
+I can use this this tool to generate my overview notebook for the project as follows:
+
+## The Files
+1. The readme file for [NovelAI Lorebook Generator](https://github.com/grahamwaters/lorebook_generator_for_novelai) `README.md`.
+2. The `MOCKUP_README.md` file in the `root` directory of this repository.
+
+## The Steps
+1. Currently I open the [readme file](https://github.com/grahamwaters/lorebook_generator_for_novelai) in a text editor and copy the text.
+2. Then I paste the text into the `MOCKUP_README.md` file in the `root` directory of this repository.
+3. Then I open [Clark Kent Reporter](scripts/main.py) in Visual Studio Code and run the script.
+4. The `destination` and `source` files are set in the `main.py` file. You can change them to whatever you want.
+
+
+
+
+
 
 # License
 This project is licensed under the MIT License - see the LICENSE.md file for details
+
+
+
+
+
+
+
+
+
+
 
 # Acknowledgments
 I would like to thank the following people for their support and guidance:
