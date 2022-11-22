@@ -54,15 +54,6 @@
         "documentation": {}
     },
     {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -283,7 +274,7 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def process_flow_controller(readme_path=path,py_path=scripts_path,ipynb_path=notebooks_path):\n    \"\"\"\n    process_flow_controller takes a string of text and returns a list of tuples\n    _extended_summary_\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional\n    :param ipynb_path: a string of text that is the path to the notebooks folder, defaults to notebooks_path\n    :type ipynb_path: str, optional",
+        "peekOfCode": "def process_flow_controller(\n    readme_path=path, py_path=scripts_path, ipynb_path=notebooks_path\n):\n    \"\"\"\n    process_flow_controller takes a string of text and returns a list of tuples\n    _extended_summary_\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -292,7 +283,7 @@
         "kind": 2,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "def background_process_flow(readme_path=None,py_path=None):\n    # what is the purpose of this function?\n    # this function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    \"\"\"\n    background_process_flow takes a string of text and returns a list of tuples. This function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional\n    \"\"\"",
+        "peekOfCode": "def background_process_flow(readme_path=None, py_path=None):\n    # what is the purpose of this function?\n    # this function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    \"\"\"\n    background_process_flow takes a string of text and returns a list of tuples. This function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.\n    :param readme_path: a string of text that is the path to the readme.md file     , defaults to path\n    :type readme_path: str, optional\n    :param py_path: a string of text that is the path to the scripts folder, defaults to scripts_path\n    :type py_path: str, optional\n    \"\"\"",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -301,7 +292,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)",
+        "peekOfCode": "project_name = \"my_project\"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file\nauthor = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n# read the config file\nconfig = configparser.ConfigParser()",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -310,7 +301,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file",
+        "peekOfCode": "author = \"Graham Waters\"\nlicense_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -319,7 +310,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()",
+        "peekOfCode": "license_text = \"MIT License\"\n# functionality flags\ngenerate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -328,7 +319,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values",
+        "peekOfCode": "generate_python_script_flag = (\n    True  # generate a python script from the code blocks in the readme.md file\n)\nexecute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]",
         "detail": "scripts.main",
         "documentation": {}
     },
@@ -337,7 +328,7 @@
         "kind": 5,
         "importPath": "scripts.main",
         "description": "scripts.main",
-        "peekOfCode": "execute_in_background_flag = (\n    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n)\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]",
+        "peekOfCode": "execute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path\n# read the config file\nconfig = configparser.ConfigParser()\nconfig.read(\"config.ini\")\n# get the values\npath = config[\"DEFAULT\"][\"path\"]\nscripts_path = config[\"DEFAULT\"][\"scripts_path\"]\nnotebooks_path = config[\"DEFAULT\"][\"notebooks_path\"]\n# print the values\nprint(path)",
         "detail": "scripts.main",
         "documentation": {}
     },

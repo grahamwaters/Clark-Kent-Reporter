@@ -1,11 +1,9 @@
 import os
 import pandas as pd
-import os
 import nbformat
 import re
 import datetime as dt
 import configparser
-import numpy as np
 
 # user-defined variables
 project_name = "my_project"  # get this from the first <h1> tag in the readme.md file or the first markdown header with only one # symbol in the readme.md file
@@ -16,9 +14,7 @@ license_text = "MIT License"
 generate_python_script_flag = (
     True  # generate a python script from the code blocks in the readme.md file
 )
-execute_in_background_flag = (
-    True # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path
-)
+execute_in_background_flag = True  # dynamically update the .py file when the readme file is saved at the absolute path specified by readme_file_path
 # read the config file
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -211,7 +207,6 @@ def startup(path=path):
     # parse the table of contents
     table_of_contents = parse_table_of_contents(readme_text)
     return table_of_contents, readme_text
-
 
 
 def create_data_section(report_notebook):
@@ -758,8 +753,9 @@ def generate_report_py_file():
             f.write(python_code)
 
 
-
-def process_flow_controller(readme_path=path,py_path=scripts_path,ipynb_path=notebooks_path):
+def process_flow_controller(
+    readme_path=path, py_path=scripts_path, ipynb_path=notebooks_path
+):
     """
     process_flow_controller takes a string of text and returns a list of tuples
 
@@ -782,7 +778,8 @@ def process_flow_controller(readme_path=path,py_path=scripts_path,ipynb_path=not
     # using the table of contents, create the sections of the report notebook
     generate_report_notebook(project_name, table_of_contents, readme_text)
 
-def background_process_flow(readme_path=None,py_path=None):
+
+def background_process_flow(readme_path=None, py_path=None):
     # what is the purpose of this function?
     # this function is a background process that will run in the background and will extract the python from the readme.md file (every 10  minutes) and save it to an updating python script at the specified script path (py_path). This allows the user to write in markdown and have it dynamically translated into python scripts they can deploy.
     """
@@ -826,7 +823,7 @@ def background_process_flow(readme_path=None,py_path=None):
     first_line_break = proj.find("\n")  # get the index of the first line break
     proj = "".join([char for char in proj[:first_line_break] if char.isalnum()])
     proj = proj[:40]
-    script_path = py_path # the path to the scripts file is provided by the user
+    script_path = py_path  # the path to the scripts file is provided by the user
     # save the python script to the destination py_path
     script_path = py_path + f"/{proj}_python_code.py"
     if os.path.exists(script_path):
@@ -836,25 +833,25 @@ def background_process_flow(readme_path=None,py_path=None):
     with open(script_path, "w") as f:
         f.write(python_code)
 
-
     # write the python code to a file
 
     return
 
-import time
-#^ Run the .py generation in the background so that the user can continue to use the notebook while the report is being generated or updated in the background.
-if execute_in_background_flag:
-    absolute_path_to_readme = '/Volumes/Backups of Grahams IMAC/PythonProjects/Reddit-NLP-Analysis/README.md' #note: could be dynamically generated from the user's input
-    absolute_path_to_pyfilefolder = '/Volumes/Backups of Grahams IMAC/PythonProjects/Reddit-NLP-Analysis/scripts' #note: could be dynamically generated from the user's input
 
-    while True: # until user stops the process
-        print('running background process')
-        background_process_flow(absolute_path_to_readme,absolute_path_to_pyfilefolder)
+import time
+
+# ^ Run the .py generation in the background so that the user can continue to use the notebook while the report is being generated or updated in the background.
+if execute_in_background_flag:
+    absolute_path_to_readme = "/Volumes/Backups of Grahams IMAC/PythonProjects/Reddit-NLP-Analysis/README.md"  # note: could be dynamically generated from the user's input
+    absolute_path_to_pyfilefolder = "/Volumes/Backups of Grahams IMAC/PythonProjects/Reddit-NLP-Analysis/scripts"  # note: could be dynamically generated from the user's input
+
+    while True:  # until user stops the process
+        print("running background process")
+        background_process_flow(absolute_path_to_readme, absolute_path_to_pyfilefolder)
         print("sleeping for 5 minutes")
         time.sleep(300)
 else:
-    process_flow_controller() # run with the default settings
-
+    process_flow_controller()  # run with the default settings
 
 
 """
