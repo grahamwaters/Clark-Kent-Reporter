@@ -17,7 +17,8 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/last-commit/grahamwaters/Clark-Kent-Reporter)
 [![GitHub stars](https://img.shields.io/github/stars/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/stars/grahamwaters/Clark-Kent-Reporter)
 [![GitHub forks](https://img.shields.io/github/forks/grahamwaters/Clark-Kent-Reporter)](https://img.shields.io/github/forks/grahamwaters/Clark-Kent-Reporter)
-
+<!-- add view count to the repo -->
+![ViewCount](https://views.whatilearened.today/views/github/grahamwaters/Clark-Kent-Reporter.svg)
 
 # Table of Contents
 
