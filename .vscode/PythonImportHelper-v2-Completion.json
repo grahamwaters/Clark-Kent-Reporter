@@ -438,24 +438,6 @@
         "documentation": {}
     },
     {
-        "label": "jupyter_to_md",
-        "kind": 2,
-        "importPath": "functions",
-        "description": "functions",
-        "peekOfCode": "def jupyter_to_md(input_file_path):\n    f = open(input_file_path)\n    # Read the Jupyter notebook\n    with open('01_premodeling.ipynb') as f:\n        nb = nbformat.read(f, as_version=4)\n    # Create a new markdown file\n    with open('generated_markdown_report.md', 'w') as f:\n        # Iterate over the cells in the Jupyter notebook\n        for cell in nb['cells']:\n            # If the cell is a markdown cell, write its contents to the markdown file,",
-        "detail": "functions",
-        "documentation": {}
-    },
-    {
-        "label": "md_to_jupyter",
-        "kind": 2,
-        "importPath": "functions",
-        "description": "functions",
-        "peekOfCode": "def md_to_jupyter(input_file_path):\n    # Read the file\n    with open(input_file_path) as f:\n        text = f.read()\n    # Use regular expressions to extract the section titles\n    titles = re.findall(r'^# (.*)$', text, re.MULTILINE)\n    # Use regular expressions to extract the sections (the text between the section titles)\n    sections = re.findall(r'^#.*\\n([\\s\\S]*?)^#', text, re.MULTILINE)\n    # Use regular expressions to extract the code blocks\n    code_blocks = re.findall(r'```(.+?)```', text, re.DOTALL)",
-        "detail": "functions",
-        "documentation": {}
-    },
-    {
         "label": "NotebookConverter",
         "kind": 6,
         "importPath": "main",
