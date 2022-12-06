@@ -36,6 +36,7 @@ A mild-mannered reporter with hidden superpowers for your data science projects.
   - [The Steps](#the-steps)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
+  - [The openai main file](#the-openai-main-file)
 
 
 # Automatic Report Generation with Clark Kent Reporter
@@ -110,3 +111,19 @@ This project is licensed under the MIT License - see the `LICENSE.md` file for d
 I would like to thank the following people for their support and guidance:
 1. Superman - for being the inspiration for this project.
 2. Clark Kent, who is clearly not superman. Because he is just a mild mannered reporter.
+
+
+## The openai main file
+
+Explained:
+
+This script defines a custom preprocessor called CodeBlockPreprocessor that converts markdown cells in a Jupyter Notebook that contain code blocks into markdown cells with the code blocks rendered as code outputs.
+
+It also defines a function called markdown_to_notebook that takes a path to a markdown file and a path to a Jupyter Notebook file as input, and converts the markdown file into a Jupyter Notebook file. It does this by reading the markdown file, creating a Jupyter Notebook with the markdown text, preprocessing the notebook to convert markdown cells with code blocks into code cells, executing the code cells, and then saving the executed notebook to the specified file path.
+
+This script also contains a commented-out function called convert_directory that is not yet implemented. This function would be used to convert all markdown files in a specified input directory into Jupyter Notebooks and save them to a specified output directory.
+
+
+Then we run the `convert_directory` function.
+
+With this function implemented, you could use the script to convert all markdown files in a specified input directory into Jupyter Notebooks and save them to a specified output directory. For example, you could use the following code to convert all markdown files in the "markdown" directory to Jupyter Notebooks and save them to the "notebooks" directory:
