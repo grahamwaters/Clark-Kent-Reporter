@@ -99,7 +99,7 @@ I can use this this tool to generate my overview notebook for the project as fol
 2. The `MOCKUP_README.md` file in the `root` directory of this repository.
 
 ## The Steps
-1. Currently I open the [readme file](https://github.com/grahamwaters/lorebook_generator_for_novelai) in a text editor and copy the text.
+1. Open the [readme file](https://github.com/grahamwaters/lorebook_generator_for_novelai) in a text editor and copy the text.
 2. Then I paste the text into the `MOCKUP_README.md` file in the `root` directory of this repository.
 3. Then I open [Clark Kent Reporter](scripts/main.py) in Visual Studio Code and run the script.
 4. The `destination` and `source` files are set in the `main.py` file. You can change them to whatever you want.
