@@ -141,7 +141,7 @@ intake @ file:///opt/conda/conda-bld/intake_1647436631684/work
 internetarchive==3.0.2
 intervaltree @ file:///Users/ktietz/demo/mc3/conda-bld/intervaltree_1630511889664/work
 ipykernel @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_05yte6zd0k/croots/recipe/ipykernel_1662361808878/work
-ipython==8.5.0
+ipython==8.10.0
 ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
 ipywidgets @ file:///tmp/build/80754af9/ipywidgets_1634143127070/work
 isort @ file:///tmp/build/80754af9/isort_1628603791788/work
